@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cave_dweller", "Cave_dweller.csproj", "{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19143F13-AC5E-45B8-A93D-B238FAB009B1}
+	EndGlobalSection
+EndGlobal

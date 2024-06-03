@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Cave_dweller/1.0.0": {
+        "runtime": {
+          "Cave_dweller.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Cave_dweller/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,14 @@
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\bin\Debug\net8.0\Cave_dweller.exe
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\bin\Debug\net8.0\Cave_dweller.deps.json
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\bin\Debug\net8.0\Cave_dweller.runtimeconfig.json
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\bin\Debug\net8.0\Cave_dweller.dll
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\bin\Debug\net8.0\Cave_dweller.pdb
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.GeneratedMSBuildEditorConfig.editorconfig
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.AssemblyInfoInputs.cache
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.AssemblyInfo.cs
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.csproj.CoreCompileInputs.cache
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.dll
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\refint\Cave_dweller.dll
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.pdb
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.genruntimeconfig.cache
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\ref\Cave_dweller.dll
