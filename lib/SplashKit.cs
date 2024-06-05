@@ -15183,7 +15183,9 @@ namespace SplashKitSDK
       __skreturn = __sklib__window_y__window(__skparam__wnd);
       return __skadapter__to_int(__skreturn);
     }
-  }
+
+        
+    }
 
     public enum KeyCode
   {

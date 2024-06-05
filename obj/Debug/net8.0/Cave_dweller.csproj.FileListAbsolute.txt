@@ -12,3 +12,4 @@ D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debu
 D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.pdb
 D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.genruntimeconfig.cache
 D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\ref\Cave_dweller.dll
+D:\some stuff\college\COS20007 Object Oriented Programming\Cave-dweller\obj\Debug\net8.0\Cave_dweller.sourcelink.json
