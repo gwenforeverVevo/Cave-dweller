@@ -4,12 +4,12 @@ namespace Cave_dweller
 {
     public abstract class Character
     {
-        protected int Health { get; set; }
-        protected Vector2D Location { get; set; }
+        protected int _health;
+        protected Vector2D Location { get; private set; }
 
-        public Character(int initialHealth, Vector2D startLocation)
+        protected Character(int initialHealth, Vector2D startLocation)
         {
-            Health = initialHealth;
+            _health = initialHealth;
             Location = startLocation;
         }
 
@@ -17,14 +17,26 @@ namespace Cave_dweller
 
         public virtual void TakeDamage(int amount)
         {
-            Health -= amount;
-            if (Health < 0) Health = 0;
+            _health -= amount;
         }
 
-        // Public getter for Location
         public Vector2D GetLocation()
         {
             return Location;
+        }
+
+        public void SetLocation(Vector2D newLocation)
+        {
+            Location = newLocation;
+        }
+
+        public int Health => _health;
+
+        public void DrawHitbox(Color color, int spriteWidth, int spriteHeight)
+        {
+            double x = Location.X;
+            double y = Location.Y;
+            SplashKit.FillRectangle(color, x, y, spriteWidth, spriteHeight);
         }
     }
 }

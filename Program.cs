@@ -1,3 +1,4 @@
+// File path: Cave_dweller/Program.cs
 using SplashKitSDK;
 
 namespace Cave_dweller
@@ -6,7 +7,7 @@ namespace Cave_dweller
     {
         public static void Main()
         {
-            Window window = new Window("Cave_dweller", 1920, 1080);
+            Window window = new Window("Cave_dweller", 1000, 600);
             Game game = new Game();
 
             do

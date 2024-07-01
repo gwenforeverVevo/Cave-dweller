@@ -1,14 +1,10 @@
-﻿using SplashKitSDK;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// File path: Cave_dweller/Monster.cs
+using SplashKitSDK;
 
 namespace Cave_dweller
 {
-    public enum MonsterType { Goblin, Wolf, Spider }
-    public enum MovementPattern { Stationary, Wandering, Chasing }
+    public enum MonsterType { Goblin }
+    public enum MovementPattern { Chasing }
 
     public abstract class Monster : Character
     {
@@ -33,5 +29,4 @@ namespace Cave_dweller
         public MonsterType Type { get => type; }
         public MovementPattern Pattern { get => movementPattern; }
     }
-
 }
