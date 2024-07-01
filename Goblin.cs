@@ -37,12 +37,7 @@ namespace Cave_dweller
             SetLocation(newLocation);
         }
 
-        public void DrawHitbox(int spriteWidth, int spriteHeight)
-        {
-            // Hitbox matching the sprite's dimensions and position
-            Rectangle hitbox = SplashKit.RectangleFrom(Location.X, Location.Y, spriteWidth, spriteHeight);
-            SplashKit.FillRectangle(Color.Purple, hitbox);
-        }
+      
 
         private double DistanceTo(Vector2D other)
         {
@@ -67,6 +62,12 @@ namespace Cave_dweller
             }
         }
 
+        public void DrawHitbox(Color color)
+        {
+            int spriteWidth = 50; // Assuming goblin sprite width
+            int spriteHeight = 50; // Assuming goblin sprite height
+            base.DrawHitbox(color, spriteWidth, spriteHeight);
+        }
         public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60); // Slightly larger hitbox
     }
 }

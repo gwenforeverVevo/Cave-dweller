@@ -1,4 +1,5 @@
-﻿using SplashKitSDK;
+﻿// File path: Cave_dweller/Character.cs
+using SplashKitSDK;
 
 namespace Cave_dweller
 {
@@ -34,9 +35,9 @@ namespace Cave_dweller
 
         public void DrawHitbox(Color color, int spriteWidth, int spriteHeight)
         {
-            double x = Location.X;
-            double y = Location.Y;
-            SplashKit.FillRectangle(color, x, y, spriteWidth, spriteHeight);
+            double x = Location.X + spriteWidth / 2 - 25; // Adjusted for hitbox size
+            double y = Location.Y + spriteHeight / 2 - 25; // Adjusted for hitbox size
+            SplashKit.FillRectangle(color, x, y, 50, 50); // 50x50 hitbox
         }
     }
 }

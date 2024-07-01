@@ -1,4 +1,5 @@
-﻿using System;
+﻿// File path: Cave_dweller/Game.cs
+using System;
 using System.Collections.Generic;
 using SplashKitSDK;
 
@@ -19,7 +20,7 @@ namespace Cave_dweller
 
         public Game()
         {
-            _player = new Player(3, 10, new Vector2D() { X = 100, Y = 100 }); // Initial health set to 3
+            _player = new Player(3, 10, new Vector2D() { X = 100, Y = 100 });
             _goblins = new List<Goblin>
             {
                 new Goblin(new Vector2D() { X = 200, Y = 200 }),
@@ -46,6 +47,7 @@ namespace Cave_dweller
             {
                 _showHitboxes = !_showHitboxes; // Toggle hitbox visibility
             }
+
             GameStateUpdater.UpdateGameState(_player, _goblins);
             ProjectileManager.UpdateProjectiles(_player, _goblins);
 
@@ -53,8 +55,8 @@ namespace Cave_dweller
             int playerSpriteHeight = _playerRestBitmap.Height;
             InputHandler.HandleInput(_player, ref _isMoving, playerSpriteWidth, playerSpriteHeight);
 
-            _player.HandleInput(); // Handle player input for reloading
-            _player.UpdateReloadAnimation(); // Update reload animation
+            _player.HandleInput(); // Add this line to handle player input for reloading
+            _player.UpdateReloadAnimation(); // Add this line to update reload animation
 
             if (_isMoving)
             {
@@ -66,15 +68,7 @@ namespace Cave_dweller
         {
             SplashKit.ClearScreen(Color.White);
             GameDrawer.DrawGame(_player, _goblins, _playerRunFrames, _playerRestBitmap, _currentFrame, _isMoving, _showHitboxes);
-            _player.DrawReloadMessage(); // Draw reload message
-            if (_showHitboxes)
-            {
-                _player.DrawHitbox(_playerRestBitmap.Width, _playerRestBitmap.Height); // Pass actual sprite dimensions
-                foreach (var goblin in _goblins)
-                {
-                    goblin.DrawHitbox(_playerRestBitmap.Width, _playerRestBitmap.Height); // Pass actual sprite dimensions
-                }
-            }
+            _player.DrawReloadMessage(); // Add this line to draw reload
             SplashKit.RefreshScreen();
         }
     }

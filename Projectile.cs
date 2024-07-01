@@ -33,15 +33,17 @@ namespace Cave_dweller
         public void Draw()
         {
             SplashKit.DrawBitmap(_bitmap, (float)_position.X, (float)_position.Y, SplashKit.OptionRotateBmp((float)_angle));
-            DrawHitbox();
+            
         }
 
-        private void DrawHitbox()
-        {
-            SplashKit.FillRectangle(Color.Purple, Hitbox);
-        }
+       
 
         public Rectangle Hitbox => SplashKit.RectangleFrom(_position.X - 5, _position.Y - 5, _bitmap.Width + 10, _bitmap.Height + 10);
         public Vector2D Position => _position;
+        public void DrawHitbox()
+        {
+            Rectangle hitbox = Hitbox;
+            SplashKit.FillRectangle(Color.Purple, hitbox);
+        }
     }
 }

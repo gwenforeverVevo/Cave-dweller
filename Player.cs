@@ -55,8 +55,8 @@ namespace Cave_dweller
             if (Ammunition > 0)
             {
                 Vector2D startPosition = GetLocation();
-                startPosition.X += spriteWidth / 2;
-                startPosition.Y += spriteHeight / 2;
+                startPosition.X += 25; // Adjusted for hitbox center
+                startPosition.Y += 25; // Adjusted for hitbox center
                 Vector2D direction = SubtractVectors(target, startPosition);
                 direction = SplashKit.UnitVector(direction); // Normalize direction vector
                 Projectile newProjectile = new Projectile(startPosition, direction);
@@ -101,7 +101,6 @@ namespace Cave_dweller
                 {
                     _reloadAnimationStep = (_reloadAnimationStep + 1) % 6;
                     _reloadMessage = "Reloading" + new string('.', _reloadAnimationStep);
-
                     if (currentTime - _lastReloadTime >= ReloadDuration)
                     {
                         Reload();
@@ -122,12 +121,7 @@ namespace Cave_dweller
             }
         }
 
-        public void DrawHitbox(int spriteWidth, int spriteHeight)
-        {
-            // Hitbox matching the sprite's dimensions and position
-            Rectangle hitbox = SplashKit.RectangleFrom(GetLocation().X, GetLocation().Y, spriteWidth, spriteHeight);
-            SplashKit.FillRectangle(Color.Purple, hitbox);
-        }
+        
 
         private Vector2D SubtractVectors(Vector2D v1, Vector2D v2)
         {
@@ -140,6 +134,13 @@ namespace Cave_dweller
             {
                 StartReload();
             }
+        }
+
+        public void DrawHitbox(Color color)
+        {
+            int spriteWidth = 50; // Assuming player sprite width
+            int spriteHeight = 50; // Assuming player sprite height
+            base.DrawHitbox(color, spriteWidth, spriteHeight);
         }
     }
 }

@@ -8,62 +8,78 @@ namespace Cave_dweller
     {
         public static void DrawGame(Player player, List<Goblin> goblins, List<Bitmap> playerRunFrames, Bitmap playerRestBitmap, int currentFrame, bool isMoving, bool showHitboxes)
         {
-            // Draw player hitbox if enabled
-            int playerSpriteWidth = playerRestBitmap.Width;
-            int playerSpriteHeight = playerRestBitmap.Height;
-            if (showHitboxes)
-            {
-                player.DrawHitbox(Color.Purple, playerSpriteWidth, playerSpriteHeight);
-            }
-
             // Draw player health
             DrawHealth(player.Health, new Vector2D() { X = 10, Y = 10 });
 
             // Draw player ammunition
             DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
 
-            // Draw reloading message
+            // Draw player reloading message
             player.DrawReloadMessage();
 
+            // Calculate player position for the sprite to match hitbox
+            Vector2D playerPosition = GetSpritePosition(player.GetLocation(), playerRestBitmap.Width, playerRestBitmap.Height);
+
+            // Draw player sprite
             if (isMoving)
             {
-                SplashKit.DrawBitmap(playerRunFrames[currentFrame], (float)player.GetLocation().X, (float)player.GetLocation().Y);
+                SplashKit.DrawBitmap(playerRunFrames[currentFrame], (float)playerPosition.X, (float)playerPosition.Y);
             }
             else
             {
-                SplashKit.DrawBitmap(playerRestBitmap, (float)player.GetLocation().X, (float)player.GetLocation().Y);
+                SplashKit.DrawBitmap(playerRestBitmap, (float)playerPosition.X, (float)playerPosition.Y);
+            }
+
+            // Draw player hitbox if enabled
+            if (showHitboxes)
+            {
+                player.DrawHitbox(Color.Purple);
             }
 
             foreach (Goblin goblin in goblins)
             {
-                // Draw goblin hitbox if enabled
+                // Calculate goblin position for the sprite to match hitbox
                 Bitmap goblinBitmap = SplashKit.LoadBitmap("goblin_bitmap", "asset\\goblin.png");
                 if (goblinBitmap == null)
                 {
                     Console.WriteLine("Error: Could not load goblin.png!");
                     Environment.Exit(1); // Exit if bitmap cannot be loaded
                 }
-                int goblinSpriteWidth = goblinBitmap.Width;
-                int goblinSpriteHeight = goblinBitmap.Height;
+                Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(), goblinBitmap.Width, goblinBitmap.Height);
+
+                // Draw goblin sprite
+                SplashKit.DrawBitmap(goblinBitmap, (float)goblinPosition.X, (float)goblinPosition.Y);
+
+                // Draw goblin health above the sprite
+                Vector2D healthBarPosition = new Vector2D() { X = goblinPosition.X, Y = goblinPosition.Y - 10 };
+                DrawHealth(goblin.Health, healthBarPosition);
+
+                // Draw goblin hitbox if enabled
                 if (showHitboxes)
                 {
-                    goblin.DrawHitbox(Color.Purple, goblinSpriteWidth, goblinSpriteHeight);
+                    goblin.DrawHitbox(Color.Purple);
                 }
-
-                // Draw goblin health
-                DrawHealth(goblin.Health, goblin.GetLocation());
-
-                SplashKit.DrawBitmap(goblinBitmap, (float)goblin.GetLocation().X, (float)goblin.GetLocation().Y);
             }
 
             foreach (Projectile projectile in player.Projectiles)
             {
+                // Draw projectile at its position
                 projectile.Draw();
+
+                // Draw projectile hitbox if enabled
                 if (showHitboxes)
                 {
-                    DrawProjectileHitbox(projectile);
+                    projectile.DrawHitbox();
                 }
             }
+        }
+
+        private static Vector2D GetSpritePosition(Vector2D hitboxLocation, int spriteWidth, int spriteHeight)
+        {
+            // Adjust the sprite position to match the center of the hitbox
+            double x = hitboxLocation.X - (spriteWidth / 2) + 25; // 25 is half of the hitbox size
+            double y = hitboxLocation.Y - (spriteHeight / 2) + 25; // 25 is half of the hitbox size
+            return new Vector2D() { X = x, Y = y };
         }
 
         private static void DrawHealth(int health, Vector2D position)
@@ -77,12 +93,6 @@ namespace Cave_dweller
         private static void DrawAmmunition(int ammunition, Vector2D position)
         {
             SplashKit.DrawText($"Ammunition: {ammunition}", Color.Black, position.X, position.Y);
-        }
-
-        private static void DrawProjectileHitbox(Projectile projectile)
-        {
-            Rectangle hitbox = projectile.Hitbox;
-            SplashKit.FillRectangle(Color.Purple, hitbox);
         }
     }
 }
