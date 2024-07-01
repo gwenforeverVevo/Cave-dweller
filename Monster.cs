@@ -4,7 +4,7 @@ using SplashKitSDK;
 namespace Cave_dweller
 {
     public enum MonsterType { Goblin }
-    public enum MovementPattern { Chasing }
+    public enum MovementPattern { Wandering, Chasing }
 
     public abstract class Monster : Character
     {
@@ -19,6 +19,7 @@ namespace Cave_dweller
         }
 
         public abstract void UpdateMovement(Vector2D playerLocation);
+        public abstract void Move(Vector2D direction, double speed);
 
         public override void TakeDamage(int amount)
         {

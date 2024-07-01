@@ -33,7 +33,7 @@ namespace Cave_dweller
             // Draw player hitbox if enabled
             if (showHitboxes)
             {
-                player.DrawHitbox(Color.Purple);
+                player.DrawHitbox(Color.Purple, playerRestBitmap.Width, playerRestBitmap.Height);
             }
 
             foreach (Goblin goblin in goblins)
@@ -57,8 +57,11 @@ namespace Cave_dweller
                 // Draw goblin hitbox if enabled
                 if (showHitboxes)
                 {
-                    goblin.DrawHitbox(Color.Purple);
+                    goblin.DrawHitbox(Color.Purple, goblinBitmap.Width, goblinBitmap.Height);
                 }
+
+                // Draw chase range
+                DrawChaseRange(goblin);
             }
 
             foreach (Projectile projectile in player.Projectiles)
@@ -76,9 +79,8 @@ namespace Cave_dweller
 
         private static Vector2D GetSpritePosition(Vector2D hitboxLocation, int spriteWidth, int spriteHeight)
         {
-            // Adjust the sprite position to match the center of the hitbox
-            double x = hitboxLocation.X - (spriteWidth / 2) + 25; // 25 is half of the hitbox size
-            double y = hitboxLocation.Y - (spriteHeight / 2) + 25; // 25 is half of the hitbox size
+            double x = hitboxLocation.X - (spriteWidth / 2);
+            double y = hitboxLocation.Y - (spriteHeight / 2);
             return new Vector2D() { X = x, Y = y };
         }
 
@@ -86,13 +88,19 @@ namespace Cave_dweller
         {
             for (int i = 0; i < health; i++)
             {
-                SplashKit.FillRectangle(Color.Red, position.X + i * 20, position.Y, 15, 15); // Drawing small red rectangles to represent health
+                SplashKit.FillRectangle(Color.Red, position.X + i * 20, position.Y, 15, 15);
             }
         }
 
         private static void DrawAmmunition(int ammunition, Vector2D position)
         {
             SplashKit.DrawText($"Ammunition: {ammunition}", Color.Black, position.X, position.Y);
+        }
+
+        private static void DrawChaseRange(Goblin goblin)
+        {
+            const double chaseThreshold = 250.0;
+            SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)goblin.GetLocation().X, (float)goblin.GetLocation().Y, (float)chaseThreshold);
         }
     }
 }

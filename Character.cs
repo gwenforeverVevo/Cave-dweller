@@ -35,9 +35,13 @@ namespace Cave_dweller
 
         public void DrawHitbox(Color color, int spriteWidth, int spriteHeight)
         {
-            double x = Location.X + spriteWidth / 2 - 25; // Adjusted for hitbox size
-            double y = Location.Y + spriteHeight / 2 - 25; // Adjusted for hitbox size
-            SplashKit.FillRectangle(color, x, y, 50, 50); // 50x50 hitbox
+            double x = Location.X - (spriteWidth / 2);
+            double y = Location.Y - (spriteHeight / 2);
+            double hitboxWidth = 50;
+            double hitboxHeight = 50;
+            double hitboxX = Location.X - (hitboxWidth / 2);
+            double hitboxY = Location.Y - (hitboxHeight / 2);
+            SplashKit.FillRectangle(color, hitboxX, hitboxY, hitboxWidth, hitboxHeight);
         }
     }
 }

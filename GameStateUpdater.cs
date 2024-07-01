@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿// File path: Cave_dweller/GameStateUpdater.cs
+using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace Cave_dweller
@@ -10,7 +11,10 @@ namespace Cave_dweller
             Vector2D playerLocation = player.GetLocation();
             foreach (Goblin goblin in goblins)
             {
-                goblin.UpdateMovement(playerLocation);
+                if (goblin.Health > 0) // Only update movement if the goblin is alive
+                {
+                    goblin.UpdateMovement(playerLocation);
+                }
             }
         }
     }

@@ -1,14 +1,29 @@
-﻿using SplashKitSDK;
+﻿// File path: Cave_dweller/Goblin.cs
+using System;
+using SplashKitSDK;
 
 namespace Cave_dweller
 {
     public class Goblin : Monster
     {
-        private const double ChaseThreshold = 100.0; // Threshold distance to start chasing
+        private const double ChaseThreshold = 250.0;
+        private const double GoblinSpeed = 0.5;
+        private const double WanderSpeed = 0.15;
+        private const int WanderMoveDuration = 2000;
+        private const int WanderStopDuration = 3000;
+        private const int ChaseCooldownDuration = 3000;
+
         private Bitmap _smokeBitmap;
+        private Vector2D _wanderDirection;
+        private SplashKitSDK.Timer _wanderTimer;
+        private SplashKitSDK.Timer _chaseCooldownTimer;
+        private bool _isWandering;
+        private bool _isChasing;
+        private string _goblinId;
+        private static int goblinCounter = 0;
 
         public Goblin(Vector2D startLocation)
-            : base(10, startLocation, MonsterType.Goblin, MovementPattern.Chasing) // Initial health set to 10
+            : base(10, startLocation, MonsterType.Goblin, MovementPattern.Wandering)
         {
             _smokeBitmap = SplashKit.LoadBitmap("smoke", "asset\\smoke.gif");
             if (_smokeBitmap == null)
@@ -16,6 +31,16 @@ namespace Cave_dweller
                 Console.WriteLine("Error: Could not load smoke.gif!");
                 Environment.Exit(1);
             }
+
+            _wanderDirection = GetRandomDirection();
+            _wanderTimer = SplashKit.CreateTimer("wander_timer" + goblinCounter);
+            _chaseCooldownTimer = SplashKit.CreateTimer("chase_cooldown_timer" + goblinCounter);
+            SplashKit.StartTimer(_wanderTimer);
+            SplashKit.StartTimer(_chaseCooldownTimer);
+            _isWandering = true;
+            _isChasing = false;
+            _goblinId = "Goblin" + (++goblinCounter);
+            Console.WriteLine($"{_goblinId} initialized at position: {startLocation.X}, {startLocation.Y}");
         }
 
         public override void UpdateMovement(Vector2D playerLocation)
@@ -23,21 +48,128 @@ namespace Cave_dweller
             double distanceToPlayer = DistanceTo(playerLocation);
             if (distanceToPlayer < ChaseThreshold)
             {
-                Vector2D direction = SubtractVectors(playerLocation, Location);
-                direction = SplashKit.UnitVector(direction);
-                Move(direction);
+                if (!_isChasing)
+                {
+                    StartChasing();
+                }
+                ResetChaseCooldownTimer();
             }
+            else if (_isChasing && IsChaseCooldownElapsed())
+            {
+                StopChasing();
+            }
+
+            if (_isChasing)
+            {
+                ChasePlayer(playerLocation);
+            }
+            else
+            {
+                HandleWandering();
+            }
+        }
+
+        private void StartChasing()
+        {
+            _isChasing = true;
+            _isWandering = false;
+            movementPattern = MovementPattern.Chasing;
+            Console.WriteLine($"{_goblinId} is now chasing the player.");
+        }
+
+        private void StopChasing()
+        {
+            _isChasing = false;
+            movementPattern = MovementPattern.Wandering;
+            ResetWanderTimer();
+            Console.WriteLine($"{_goblinId} has lost the player and is now wandering.");
+        }
+
+        private void ChasePlayer(Vector2D playerLocation)
+        {
+            Vector2D direction = SubtractVectors(playerLocation, Location);
+            direction = SplashKit.UnitVector(direction);
+            Move(direction, GoblinSpeed);
+            Console.WriteLine($"{_goblinId} is chasing the player to position: {Location.X}, {Location.Y}");
+        }
+
+        private void HandleWandering()
+        {
+            if (_isWandering && IsWanderMoveDurationElapsed())
+            {
+                StopWandering();
+            }
+            else if (!_isWandering && IsWanderStopDurationElapsed())
+            {
+                StartWandering();
+            }
+
+            if (_isWandering)
+            {
+                Move(_wanderDirection, WanderSpeed);
+                Console.WriteLine($"{_goblinId} is wandering to position: {Location.X}, {Location.Y}");
+            }
+        }
+
+        private void StartWandering()
+        {
+            _isWandering = true;
+            _wanderDirection = GetRandomDirection();
+            ResetWanderTimer();
+            Console.WriteLine($"{_goblinId} is now moving in direction: {_wanderDirection.X}, {_wanderDirection.Y}");
+        }
+
+        private void StopWandering()
+        {
+            _isWandering = false;
+            ResetWanderTimer();
+            Console.WriteLine($"{_goblinId} is now stopping at position: {Location.X}, {Location.Y}");
+        }
+
+        private Vector2D GetRandomDirection()
+        {
+            Random random = new Random();
+            double angle = random.NextDouble() * 2 * Math.PI;
+            return new Vector2D() { X = Math.Cos(angle), Y = Math.Sin(angle) };
+        }
+
+        private void ResetWanderTimer()
+        {
+            SplashKit.ResetTimer(_wanderTimer);
+        }
+
+        private void ResetChaseCooldownTimer()
+        {
+            SplashKit.ResetTimer(_chaseCooldownTimer);
+        }
+
+        private bool IsWanderMoveDurationElapsed()
+        {
+            return SplashKit.TimerTicks(_wanderTimer) > WanderMoveDuration;
+        }
+
+        private bool IsWanderStopDurationElapsed()
+        {
+            return SplashKit.TimerTicks(_wanderTimer) > WanderStopDuration;
+        }
+
+        private bool IsChaseCooldownElapsed()
+        {
+            return SplashKit.TimerTicks(_chaseCooldownTimer) > ChaseCooldownDuration;
         }
 
         public override void Move(Vector2D direction)
         {
-            Vector2D newLocation = Location;
-            newLocation.X += direction.X;
-            newLocation.Y += direction.Y;
-            SetLocation(newLocation);
+            Move(direction, GoblinSpeed);
         }
 
-      
+        public override void Move(Vector2D direction, double speed)
+        {
+            Vector2D newLocation = Location;
+            newLocation.X += direction.X * speed;
+            newLocation.Y += direction.Y * speed;
+            SetLocation(newLocation);
+        }
 
         private double DistanceTo(Vector2D other)
         {
@@ -54,20 +186,14 @@ namespace Cave_dweller
         public override void TakeDamage(int amount)
         {
             base.TakeDamage(amount);
-            Console.WriteLine("Goblin is hit!");
+            Console.WriteLine($"{_goblinId} is hit!");
             if (_health <= 0)
             {
-                Console.WriteLine("Goblin has died.");
+                Console.WriteLine($"{_goblinId} has died.");
                 SplashKit.DrawBitmap(_smokeBitmap, (float)Location.X, (float)Location.Y);
             }
         }
 
-        public void DrawHitbox(Color color)
-        {
-            int spriteWidth = 50; // Assuming goblin sprite width
-            int spriteHeight = 50; // Assuming goblin sprite height
-            base.DrawHitbox(color, spriteWidth, spriteHeight);
-        }
-        public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60); // Slightly larger hitbox
+        public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
     }
 }
