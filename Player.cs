@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿// File path: Cave_dweller/Player.cs
+using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace Cave_dweller
@@ -10,14 +11,14 @@ namespace Cave_dweller
         public int Ammunition { get; private set; }
         private Vector2D Facing { get; set; }
         public List<Projectile> Projectiles { get; private set; }
-
         private string _reloadMessage;
         private int _reloadAnimationStep;
         private double _lastReloadTime;
         private bool _isReloading;
         private bool _showReloadPrompt;
+        private double _speed;
 
-        public Player(int initialHealth, int initialAmmo, Vector2D startLocation)
+        public Player(int initialHealth, int initialAmmo, Vector2D startLocation, double speed = 1.0)
             : base(initialHealth, startLocation)
         {
             Ammunition = initialAmmo;
@@ -28,13 +29,14 @@ namespace Cave_dweller
             _lastReloadTime = 0;
             _isReloading = false;
             _showReloadPrompt = false;
+            _speed = speed; // Initialize speed
         }
 
         public override void Move(Vector2D direction)
         {
             Vector2D newLocation = GetLocation();
-            newLocation.X += direction.X;
-            newLocation.Y += direction.Y;
+            newLocation.X += direction.X * _speed; // Apply speed multiplier
+            newLocation.Y += direction.Y * _speed; // Apply speed multiplier
             SetLocation(newLocation);
             Facing = direction;
         }
@@ -113,15 +115,13 @@ namespace Cave_dweller
         {
             if (!string.IsNullOrEmpty(_reloadMessage))
             {
-                SplashKit.DrawText(_reloadMessage, Color.Black, GetLocation().X, GetLocation().Y - 40); // Above the sprite
+                SplashKit.DrawText(_reloadMessage, Color.Black, GetLocation().X, GetLocation().Y - 100); // Adjusted Y-coordinate
             }
             else if (_showReloadPrompt)
             {
-                SplashKit.DrawText("Press 'R' to reload your weapon", Color.Black, GetLocation().X, GetLocation().Y - 40);
+                SplashKit.DrawText("Press 'R' to reload your weapon", Color.Black, GetLocation().X - 100, GetLocation().Y - 100); // Adjusted Y-coordinate
             }
         }
-
-        
 
         private Vector2D SubtractVectors(Vector2D v1, Vector2D v2)
         {
@@ -141,6 +141,11 @@ namespace Cave_dweller
             int spriteWidth = 50; // Assuming player sprite width
             int spriteHeight = 50; // Assuming player sprite height
             base.DrawHitbox(color, spriteWidth, spriteHeight);
+        }
+
+        public void SetSpeed(double speed)
+        {
+            _speed = speed; // Method to set player speed
         }
     }
 }

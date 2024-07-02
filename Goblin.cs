@@ -46,16 +46,19 @@ namespace Cave_dweller
         public override void UpdateMovement(Vector2D playerLocation)
         {
             double distanceToPlayer = DistanceTo(playerLocation);
+
             if (distanceToPlayer < ChaseThreshold)
             {
                 if (!_isChasing)
                 {
+                    PrintState("chasing");
                     StartChasing();
                 }
                 ResetChaseCooldownTimer();
             }
             else if (_isChasing && IsChaseCooldownElapsed())
             {
+                PrintState("wandering");
                 StopChasing();
             }
 
@@ -74,7 +77,6 @@ namespace Cave_dweller
             _isChasing = true;
             _isWandering = false;
             movementPattern = MovementPattern.Chasing;
-            Console.WriteLine($"{_goblinId} is now chasing the player.");
         }
 
         private void StopChasing()
@@ -82,7 +84,6 @@ namespace Cave_dweller
             _isChasing = false;
             movementPattern = MovementPattern.Wandering;
             ResetWanderTimer();
-            Console.WriteLine($"{_goblinId} has lost the player and is now wandering.");
         }
 
         private void ChasePlayer(Vector2D playerLocation)
@@ -90,24 +91,24 @@ namespace Cave_dweller
             Vector2D direction = SubtractVectors(playerLocation, Location);
             direction = SplashKit.UnitVector(direction);
             Move(direction, GoblinSpeed);
-            Console.WriteLine($"{_goblinId} is chasing the player to position: {Location.X}, {Location.Y}");
         }
 
         private void HandleWandering()
         {
             if (_isWandering && IsWanderMoveDurationElapsed())
             {
+                PrintState("stopping");
                 StopWandering();
             }
             else if (!_isWandering && IsWanderStopDurationElapsed())
             {
+                PrintState("moving");
                 StartWandering();
             }
 
             if (_isWandering)
             {
                 Move(_wanderDirection, WanderSpeed);
-                Console.WriteLine($"{_goblinId} is wandering to position: {Location.X}, {Location.Y}");
             }
         }
 
@@ -116,14 +117,12 @@ namespace Cave_dweller
             _isWandering = true;
             _wanderDirection = GetRandomDirection();
             ResetWanderTimer();
-            Console.WriteLine($"{_goblinId} is now moving in direction: {_wanderDirection.X}, {_wanderDirection.Y}");
         }
 
         private void StopWandering()
         {
             _isWandering = false;
             ResetWanderTimer();
-            Console.WriteLine($"{_goblinId} is now stopping at position: {Location.X}, {Location.Y}");
         }
 
         private Vector2D GetRandomDirection()
@@ -195,5 +194,10 @@ namespace Cave_dweller
         }
 
         public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
+
+        private void PrintState(string state)
+        {
+            Console.WriteLine($"{_goblinId} is {state} at position: {Location.X}, {Location.Y}");
+        }
     }
 }

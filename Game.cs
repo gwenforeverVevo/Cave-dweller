@@ -11,6 +11,7 @@ namespace Cave_dweller
         private List<Goblin> _goblins;
         private List<Bitmap> _playerRunFrames;
         private Bitmap _playerRestBitmap;
+        private Bitmap _cursorBitmap; // Add cursor bitmap
         private int _currentFrame;
         private double _frameDuration;
         private double _lastFrameTime;
@@ -20,7 +21,7 @@ namespace Cave_dweller
 
         public Game()
         {
-            _player = new Player(3, 10, new Vector2D() { X = 100, Y = 100 });
+            _player = new Player(3, 10, new Vector2D() { X = 100, Y = 100 }, 0.6);
             _goblins = new List<Goblin>
             {
                 new Goblin(new Vector2D() { X = 200, Y = 200 }),
@@ -30,6 +31,9 @@ namespace Cave_dweller
             AssetLoader assetLoader = new AssetLoader();
             _playerRunFrames = assetLoader.LoadFrames("player_run", "asset\\player_run.png", 20);
             _playerRestBitmap = assetLoader.LoadBitmap("player_rest", "asset\\player_rest.png");
+
+            // Load the cursor bitmap
+            _cursorBitmap = assetLoader.LoadBitmap("cursor", "asset\\cursor.png");
 
             _currentFrame = 0;
             _frameDuration = 0.1; // Duration of each frame in seconds
@@ -55,8 +59,8 @@ namespace Cave_dweller
             int playerSpriteHeight = _playerRestBitmap.Height;
             InputHandler.HandleInput(_player, ref _isMoving, playerSpriteWidth, playerSpriteHeight);
 
-            _player.HandleInput(); // Add this line to handle player input for reloading
-            _player.UpdateReloadAnimation(); // Add this line to update reload animation
+            _player.HandleInput();
+            _player.UpdateReloadAnimation();
 
             if (_isMoving)
             {
@@ -68,7 +72,11 @@ namespace Cave_dweller
         {
             SplashKit.ClearScreen(Color.White);
             GameDrawer.DrawGame(_player, _goblins, _playerRunFrames, _playerRestBitmap, _currentFrame, _isMoving, _showHitboxes);
-            _player.DrawReloadMessage(); // Add this line to draw reload
+            _player.DrawReloadMessage();
+
+            // Draw the cursor at the current mouse position
+            SplashKit.DrawBitmap(_cursorBitmap, SplashKit.MouseX(), SplashKit.MouseY());
+
             SplashKit.RefreshScreen();
         }
     }

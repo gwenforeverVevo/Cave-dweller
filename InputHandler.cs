@@ -30,6 +30,16 @@ namespace Cave_dweller
             {
                 player.Reload();
             }
+
+            // Adjust player speed with key inputs (example: '+' to increase, '-' to decrease)
+            //if (SplashKit.KeyTyped(KeyCode.PlusKey))
+            //{
+            //    player.SetSpeed(player.GetSpeed() + 0.5);
+            //}
+            //if (SplashKit.KeyTyped(KeyCode.MinusKey))
+            //{
+            //    player.SetSpeed(player.GetSpeed() - 0.5);
+            //}
         }
 
         private static Vector2D ToVector2D(this Point2D point)

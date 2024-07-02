@@ -10,10 +10,8 @@ namespace Cave_dweller
         {
             // Draw player health
             DrawHealth(player.Health, new Vector2D() { X = 10, Y = 10 });
-
             // Draw player ammunition
             DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
-
             // Draw player reloading message
             player.DrawReloadMessage();
 
@@ -58,10 +56,8 @@ namespace Cave_dweller
                 if (showHitboxes)
                 {
                     goblin.DrawHitbox(Color.Purple, goblinBitmap.Width, goblinBitmap.Height);
+                    DrawChaseRange(goblin); // Draw chase range when hitboxes are shown
                 }
-
-                // Draw chase range
-                DrawChaseRange(goblin);
             }
 
             foreach (Projectile projectile in player.Projectiles)
