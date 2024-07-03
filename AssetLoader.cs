@@ -38,5 +38,16 @@ namespace Cave_dweller
             }
             return bitmap;
         }
+
+        public SoundEffect LoadSound(string name, string filePath)
+        {
+            SoundEffect sound = SplashKit.LoadSoundEffect(name, filePath);
+            if (sound == null)
+            {
+                Console.WriteLine($"Error: Could not load {filePath}!");
+                Environment.Exit(1); // Exit the program if the sound cannot be loaded
+            }
+            return sound;
+        }
     }
 }

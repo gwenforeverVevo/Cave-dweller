@@ -1,10 +1,11 @@
 ﻿// File path: Cave_dweller/Goblin.cs
 using System;
+using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace Cave_dweller
 {
-    public class Goblin : Monster
+    public class Goblin : Monster, IInventory
     {
         private const double ChaseThreshold = 250.0;
         private const double GoblinSpeed = 0.5;
@@ -12,7 +13,8 @@ namespace Cave_dweller
         private const int WanderMoveDuration = 2000;
         private const int WanderStopDuration = 3000;
         private const int ChaseCooldownDuration = 3000;
-
+        private const int AttackCooldownDuration = 1000; // 1 second cooldown
+        private SplashKitSDK.Timer _attackCooldownTimer;
         private Bitmap _smokeBitmap;
         private Vector2D _wanderDirection;
         private SplashKitSDK.Timer _wanderTimer;
@@ -21,6 +23,9 @@ namespace Cave_dweller
         private bool _isChasing;
         private string _goblinId;
         private static int goblinCounter = 0;
+        private Inventory _inventory;
+
+        public static List<Item> DroppedItems { get; } = new List<Item>();
 
         public Goblin(Vector2D startLocation)
             : base(10, startLocation, MonsterType.Goblin, MovementPattern.Wandering)
@@ -41,11 +46,18 @@ namespace Cave_dweller
             _isChasing = false;
             _goblinId = "Goblin" + (++goblinCounter);
             Console.WriteLine($"{_goblinId} initialized at position: {startLocation.X}, {startLocation.Y}");
+            _attackCooldownTimer = SplashKit.CreateTimer("attack_cooldown_timer" + goblinCounter);
+            SplashKit.StartTimer(_attackCooldownTimer);
+            _inventory = new Inventory();
+
+            // Add GoblinFinger item to goblin's inventory
+            _inventory.AddItem(new Item("Goblin Finger", "A severed finger of a goblin. Increases your damage when used.",
+                "asset\\goblinFinger.png", player => player?.IncreaseDamage(1))); // Increases damage by 1
         }
 
         public override void UpdateMovement(Vector2D playerLocation)
         {
-            double distanceToPlayer = DistanceTo(playerLocation);
+            double distanceToPlayer = VectorUtils.DistanceTo(Location, playerLocation);
 
             if (distanceToPlayer < ChaseThreshold)
             {
@@ -88,7 +100,7 @@ namespace Cave_dweller
 
         private void ChasePlayer(Vector2D playerLocation)
         {
-            Vector2D direction = SubtractVectors(playerLocation, Location);
+            Vector2D direction = VectorUtils.SubtractVectors(playerLocation, Location);
             direction = SplashKit.UnitVector(direction);
             Move(direction, GoblinSpeed);
         }
@@ -170,18 +182,6 @@ namespace Cave_dweller
             SetLocation(newLocation);
         }
 
-        private double DistanceTo(Vector2D other)
-        {
-            double dx = Location.X - other.X;
-            double dy = Location.Y - other.Y;
-            return Math.Sqrt(dx * dx + dy * dy);
-        }
-
-        private Vector2D SubtractVectors(Vector2D v1, Vector2D v2)
-        {
-            return new Vector2D() { X = v1.X - v2.X, Y = v1.Y - v2.Y };
-        }
-
         public override void TakeDamage(int amount)
         {
             base.TakeDamage(amount);
@@ -190,7 +190,33 @@ namespace Cave_dweller
             {
                 Console.WriteLine($"{_goblinId} has died.");
                 SplashKit.DrawBitmap(_smokeBitmap, (float)Location.X, (float)Location.Y);
+
+                // Drop items on death
+                List<Item> itemsToDrop = new List<Item>(_inventory.GetItems());
+                foreach (Item item in itemsToDrop)
+                {
+                    DropItem(item, Location);
+                }
             }
+        }
+
+        public void AttackPlayer(Player player)
+        {
+            if (SplashKit.RectanglesIntersect(this.Hitbox, player.Hitbox) && IsAttackCooldownElapsed())
+            {
+                player.TakeDamage(1);
+                ResetAttackCooldownTimer();
+            }
+        }
+
+        private void ResetAttackCooldownTimer()
+        {
+            SplashKit.ResetTimer(_attackCooldownTimer);
+        }
+
+        private bool IsAttackCooldownElapsed()
+        {
+            return SplashKit.TimerTicks(_attackCooldownTimer) > AttackCooldownDuration;
         }
 
         public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
@@ -199,5 +225,26 @@ namespace Cave_dweller
         {
             Console.WriteLine($"{_goblinId} is {state} at position: {Location.X}, {Location.Y}");
         }
+
+        public void Update()
+        {
+            UpdateFlash();
+            // Other update logic...
+        }
+
+        // Inventory Methods
+        public void AddItem(Item item) => _inventory.AddItem(item);
+        public void RemoveItem(Item item) => _inventory.RemoveItem(item);
+        public bool ContainsItem(Item item) => _inventory.ContainsItem(item);
+        public void UseItem(Item item) => _inventory.UseItem(item, null); // Goblin doesn't use items, passing null for player
+        public void DropItem(Item item, Vector2D position)
+        {
+            _inventory.RemoveItem(item);
+            item.Position = position;
+            DroppedItems.Add(item);
+            Console.WriteLine($"Dropped item '{item.Name}' at location ({position.X}, {position.Y}).");
+        }
+
+        public List<Item> GetItems() => _inventory.GetItems();
     }
 }

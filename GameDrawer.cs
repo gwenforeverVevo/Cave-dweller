@@ -8,35 +8,32 @@ namespace Cave_dweller
     {
         public static void DrawGame(Player player, List<Goblin> goblins, List<Bitmap> playerRunFrames, Bitmap playerRestBitmap, int currentFrame, bool isMoving, bool showHitboxes)
         {
+            // Draw player with flash effect
+            Vector2D playerPosition = GetSpritePosition(player.GetLocation(), playerRestBitmap.Width, playerRestBitmap.Height);
+            if (isMoving)
+            {
+                DrawCharacterWithFlash(player, playerRunFrames[currentFrame], playerPosition);
+            }
+            else
+            {
+                DrawCharacterWithFlash(player, playerRestBitmap, playerPosition);
+            }
+
             // Draw player health
             DrawHealth(player.Health, new Vector2D() { X = 10, Y = 10 });
             // Draw player ammunition
             DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
             // Draw player reloading message
             player.DrawReloadMessage();
-
-            // Calculate player position for the sprite to match hitbox
-            Vector2D playerPosition = GetSpritePosition(player.GetLocation(), playerRestBitmap.Width, playerRestBitmap.Height);
-
-            // Draw player sprite
-            if (isMoving)
-            {
-                SplashKit.DrawBitmap(playerRunFrames[currentFrame], (float)playerPosition.X, (float)playerPosition.Y);
-            }
-            else
-            {
-                SplashKit.DrawBitmap(playerRestBitmap, (float)playerPosition.X, (float)playerPosition.Y);
-            }
-
             // Draw player hitbox if enabled
             if (showHitboxes)
             {
                 player.DrawHitbox(Color.Purple, playerRestBitmap.Width, playerRestBitmap.Height);
             }
 
+            // Draw goblins with flash effect
             foreach (Goblin goblin in goblins)
             {
-                // Calculate goblin position for the sprite to match hitbox
                 Bitmap goblinBitmap = SplashKit.LoadBitmap("goblin_bitmap", "asset\\goblin.png");
                 if (goblinBitmap == null)
                 {
@@ -44,9 +41,7 @@ namespace Cave_dweller
                     Environment.Exit(1); // Exit if bitmap cannot be loaded
                 }
                 Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(), goblinBitmap.Width, goblinBitmap.Height);
-
-                // Draw goblin sprite
-                SplashKit.DrawBitmap(goblinBitmap, (float)goblinPosition.X, (float)goblinPosition.Y);
+                DrawCharacterWithFlash(goblin, goblinBitmap, goblinPosition);
 
                 // Draw goblin health above the sprite
                 Vector2D healthBarPosition = new Vector2D() { X = goblinPosition.X, Y = goblinPosition.Y - 10 };
@@ -60,17 +55,42 @@ namespace Cave_dweller
                 }
             }
 
+            // Draw player projectiles
             foreach (Projectile projectile in player.Projectiles)
             {
-                // Draw projectile at its position
                 projectile.Draw();
-
                 // Draw projectile hitbox if enabled
                 if (showHitboxes)
                 {
                     projectile.DrawHitbox();
                 }
             }
+
+            // Draw dropped items
+            DrawDroppedItems(Goblin.DroppedItems);
+        }
+
+        private static void DrawCharacterWithFlash(Character character, Bitmap bitmap, Vector2D position)
+        {
+            if (IsColorRed(character.CurrentColor))
+            {
+                SplashKit.FillRectangle(Color.RGBAColor(255, 0, 0, 128), position.X, position.Y, bitmap.Width, bitmap.Height);
+            }
+            SplashKit.DrawBitmap(bitmap, (float)position.X, (float)position.Y);
+        }
+
+        public static void DrawDroppedItems(List<Item> items)
+        {
+            foreach (Item item in items)
+            {
+                // Draw the item at its actual position
+                SplashKit.DrawBitmap(item.Image, (float)item.Position.X, (float)item.Position.Y);
+            }
+        }
+
+        private static bool IsColorRed(Color color)
+        {
+            return color.R == 255 && color.G == 0 && color.B == 0;
         }
 
         private static Vector2D GetSpritePosition(Vector2D hitboxLocation, int spriteWidth, int spriteHeight)

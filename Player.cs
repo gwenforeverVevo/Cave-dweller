@@ -1,10 +1,11 @@
 ﻿// File path: Cave_dweller/Player.cs
+using System;
 using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace Cave_dweller
 {
-    public class Player : Character
+    public class Player : Character, IInventory
     {
         private const int MaxAmmo = 10;
         private const double ReloadDuration = 2000; // 2 seconds reload time
@@ -17,6 +18,14 @@ namespace Cave_dweller
         private bool _isReloading;
         private bool _showReloadPrompt;
         private double _speed;
+        private int _damage;
+        private static SoundEffect _hitSound;
+        private Inventory _inventory;
+
+        static Player()
+        {
+            _hitSound = SplashKit.LoadSoundEffect("hit_sound", "asset/hit.wav"); // Load hit sound
+        }
 
         public Player(int initialHealth, int initialAmmo, Vector2D startLocation, double speed = 1.0)
             : base(initialHealth, startLocation)
@@ -30,6 +39,8 @@ namespace Cave_dweller
             _isReloading = false;
             _showReloadPrompt = false;
             _speed = speed; // Initialize speed
+            _inventory = new Inventory();
+            _damage = 10; // Initial damage
         }
 
         public override void Move(Vector2D direction)
@@ -47,19 +58,22 @@ namespace Cave_dweller
             if (_health <= 0)
             {
                 Console.WriteLine("Player has died.");
+                IsDead = true;
             }
+            SplashKit.PlaySoundEffect(_hitSound); // Play hit sound
         }
+
+        public bool IsDead { get; private set; } = false;
 
         public void ShootProjectile(Vector2D target, int spriteWidth, int spriteHeight)
         {
             if (_isReloading) return;
-
             if (Ammunition > 0)
             {
                 Vector2D startPosition = GetLocation();
                 startPosition.X += 25; // Adjusted for hitbox center
                 startPosition.Y += 25; // Adjusted for hitbox center
-                Vector2D direction = SubtractVectors(target, startPosition);
+                Vector2D direction = VectorUtils.SubtractVectors(target, startPosition);
                 direction = SplashKit.UnitVector(direction); // Normalize direction vector
                 Projectile newProjectile = new Projectile(startPosition, direction);
                 Projectiles.Add(newProjectile);
@@ -123,11 +137,6 @@ namespace Cave_dweller
             }
         }
 
-        private Vector2D SubtractVectors(Vector2D v1, Vector2D v2)
-        {
-            return new Vector2D() { X = v1.X - v2.X, Y = v1.Y - v2.Y }; // Corrected direction calculation
-        }
-
         public void HandleInput()
         {
             if (SplashKit.KeyTyped(KeyCode.RKey))
@@ -146,6 +155,46 @@ namespace Cave_dweller
         public void SetSpeed(double speed)
         {
             _speed = speed; // Method to set player speed
+        }
+
+        public void IncreaseDamage(int amount)
+        {
+            _damage += amount;
+            Console.WriteLine($"Player damage increased to {_damage}.");
+        }
+
+        public Rectangle Hitbox => SplashKit.RectangleFrom(GetLocation().X - 5, GetLocation().Y - 5, 60, 60);
+
+        public void Update()
+        {
+            UpdateFlash();
+        }
+
+        // Inventory Methods
+        public void AddItem(Item item) => _inventory.AddItem(item);
+        public void RemoveItem(Item item) => _inventory.RemoveItem(item);
+        public bool ContainsItem(Item item) => _inventory.ContainsItem(item);
+        public void UseItem(Item item) => _inventory.UseItem(item, this);
+        public void DropItem(Item item, Vector2D position) => _inventory.DropItem(item, position);
+        public List<Item> GetItems() => _inventory.GetItems();
+
+        public void UseItemByName(string itemName)
+        {
+            Item? item = _inventory.Fetch(itemName);
+            if (item != null)
+            {
+                UseItem(item);
+            }
+            else
+            {
+                Console.WriteLine($"Item '{itemName}' not found in inventory.");
+            }
+        }
+
+        public void PickUpItem(Item item)
+        {
+            AddItem(item);
+            Console.WriteLine($"Picked up item: {item.Name}");
         }
     }
 }

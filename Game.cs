@@ -18,14 +18,15 @@ namespace Cave_dweller
         private bool _isMoving;
         private bool _showHitboxes;
         private SplashKitSDK.Timer _gameTimer;
+        private bool _gameOver;
 
         public Game()
         {
             _player = new Player(3, 10, new Vector2D() { X = 100, Y = 100 }, 0.6);
             _goblins = new List<Goblin>
             {
-                new Goblin(new Vector2D() { X = 200, Y = 200 }),
-                new Goblin(new Vector2D() { X = 300, Y = 300 })
+                new Goblin(new Vector2D() { X = 500, Y = 200 }),
+                new Goblin(new Vector2D() { X = 500, Y = 300 })
             };
 
             AssetLoader assetLoader = new AssetLoader();
@@ -43,10 +44,16 @@ namespace Cave_dweller
 
             _gameTimer = SplashKit.CreateTimer("game_timer");
             SplashKit.StartTimer(_gameTimer);
+            _gameOver = false;
         }
 
         public void Update()
         {
+            if (_gameOver)
+            {
+                return;
+            }
+
             if (SplashKit.KeyTyped(KeyCode.HKey))
             {
                 _showHitboxes = !_showHitboxes; // Toggle hitbox visibility
@@ -62,6 +69,16 @@ namespace Cave_dweller
             _player.HandleInput();
             _player.UpdateReloadAnimation();
 
+            foreach (Goblin goblin in _goblins)
+            {
+                goblin.AttackPlayer(_player);
+                if (_player.IsDead)
+                {
+                    _gameOver = true;
+                    return;
+                }
+            }
+
             if (_isMoving)
             {
                 AnimationManager.UpdateAnimation(ref _currentFrame, ref _lastFrameTime, _frameDuration, _playerRunFrames.Count);
@@ -71,6 +88,14 @@ namespace Cave_dweller
         public void Draw()
         {
             SplashKit.ClearScreen(Color.White);
+
+            if (_gameOver)
+            {
+                SplashKit.DrawText("Game Over", Color.Red, 700, 400);
+                SplashKit.RefreshScreen();
+                return;
+            }
+
             GameDrawer.DrawGame(_player, _goblins, _playerRunFrames, _playerRestBitmap, _currentFrame, _isMoving, _showHitboxes);
             _player.DrawReloadMessage();
 
