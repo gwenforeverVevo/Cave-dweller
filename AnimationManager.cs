@@ -1,4 +1,4 @@
-﻿// File path: Cave_dweller/AnimationManager.cs
+﻿
 using System;
 using SplashKitSDK;
 

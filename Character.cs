@@ -1,4 +1,4 @@
-﻿// File path: Cave_dweller/Character.cs
+﻿
 using SplashKitSDK;
 
 namespace Cave_dweller

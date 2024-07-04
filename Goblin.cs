@@ -1,4 +1,4 @@
-﻿// File path: Cave_dweller/Goblin.cs
+﻿
 using System;
 using System.Collections.Generic;
 using SplashKitSDK;
@@ -37,7 +37,7 @@ namespace Cave_dweller
                 Environment.Exit(1);
             }
 
-            _wanderDirection = GetRandomDirection();
+            _wanderDirection = GetRandomDirection(startLocation);
             _wanderTimer = SplashKit.CreateTimer("wander_timer" + goblinCounter);
             _chaseCooldownTimer = SplashKit.CreateTimer("chase_cooldown_timer" + goblinCounter);
             SplashKit.StartTimer(_wanderTimer);
@@ -77,7 +77,7 @@ namespace Cave_dweller
             }
             else
             {
-                HandleWandering();
+                HandleWandering(playerLocation);
             }
         }
 
@@ -102,7 +102,7 @@ namespace Cave_dweller
             Move(direction, GoblinSpeed);
         }
 
-        private void HandleWandering()
+        private void HandleWandering(Vector2D playerLocation)
         {
             if (_isWandering && IsWanderMoveDurationElapsed())
             {
@@ -112,7 +112,7 @@ namespace Cave_dweller
             else if (!_isWandering && IsWanderStopDurationElapsed())
             {
                 PrintState("moving");
-                StartWandering();
+                StartWandering(playerLocation);
             }
 
             if (_isWandering)
@@ -121,10 +121,10 @@ namespace Cave_dweller
             }
         }
 
-        private void StartWandering()
+        private void StartWandering(Vector2D playerLocation)
         {
             _isWandering = true;
-            _wanderDirection = GetRandomDirection();
+            _wanderDirection = GetRandomDirection(playerLocation);
             ResetWanderTimer();
         }
 
@@ -134,11 +134,13 @@ namespace Cave_dweller
             ResetWanderTimer();
         }
 
-        private Vector2D GetRandomDirection()
+        private Vector2D GetRandomDirection(Vector2D playerLocation)
         {
             Random random = new Random();
-            double angle = random.NextDouble() * 2 * Math.PI;
-            return new Vector2D() { X = Math.Cos(angle), Y = Math.Sin(angle) };
+            double angle = random.NextDouble() * Math.PI * 2;
+            double biasAngle = Math.Atan2(playerLocation.Y - Location.Y, playerLocation.X - Location.X);
+            double finalAngle = (angle + biasAngle) / 2; // Bias towards player
+            return new Vector2D() { X = Math.Cos(finalAngle), Y = Math.Sin(finalAngle) };
         }
 
         private void ResetWanderTimer()
@@ -199,7 +201,7 @@ namespace Cave_dweller
 
 
 
-        public void AttackPlayer(Player player)
+        public override void AttackPlayer(Player player)
         {
             if (SplashKit.RectanglesIntersect(this.Hitbox, player.Hitbox) && IsAttackCooldownElapsed())
             {
@@ -218,7 +220,7 @@ namespace Cave_dweller
             return SplashKit.TimerTicks(_attackCooldownTimer) > AttackCooldownDuration;
         }
 
-        public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
+        public override Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
 
         private void PrintState(string state)
         {

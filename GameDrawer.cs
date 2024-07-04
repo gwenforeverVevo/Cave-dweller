@@ -1,12 +1,14 @@
-﻿using Cave_dweller;
+﻿
+using Cave_dweller;
 using SplashKitSDK;
+using System;
+using System.Collections.Generic;
 
 public static class GameDrawer
 {
-    public static void DrawGame(Player player, List<Goblin> goblins, List<Wolf> wolfs,
-                                List<Spider> spiders, List<Bitmap> playerRunRightFrames,
-                                List<Bitmap> playerRunLeftFrames, Bitmap playerRestBitmap,
-                                int currentFrame, bool isMoving, bool showHitboxes, Bitmap floorBitmap)
+    public static void DrawGame(Player player, List<Monster> monsters, List<Bitmap> playerRunRightFrames,
+                                List<Bitmap> playerRunLeftFrames, Bitmap playerRestBitmap, int currentFrame,
+                                bool isMoving, bool showHitboxes, Bitmap floorBitmap, int highScore)
     {
         DrawFloor(floorBitmap);
 
@@ -32,73 +34,27 @@ public static class GameDrawer
         DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
         DrawPlayerStats(player, new Vector2D() { X = 10, Y = 70 });
         player.DrawReloadMessage();
-        DrawPlayerScore(player.Score, new Vector2D() { X = SplashKit.ScreenWidth() / 2, Y = 10 });
+        //DrawPlayerScore(player.Score, new Vector2D() { X = SplashKit.ScreenWidth() / 2, Y = 10 });
+        DrawPlayerScore(player.Score, highScore, new Vector2D() { X = SplashKit.ScreenWidth() / 2, Y = 10 });
 
         if (showHitboxes)
         {
             player.DrawHitbox(Color.Purple, playerRestBitmap.Width, playerRestBitmap.Height);
         }
 
-        foreach (Goblin goblin in goblins)
+        foreach (Monster monster in monsters)
         {
-            Bitmap goblinBitmap = SplashKit.LoadBitmap("goblin_bitmap", "asset\\goblin.png");
-            if (goblinBitmap == null)
-            {
-                Console.WriteLine("Error: Could not load goblin.png!");
-                Environment.Exit(1);
-            }
-            Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(), goblinBitmap.Width, goblinBitmap.Height);
-            DrawCharacterWithFlash(goblin, goblinBitmap, goblinPosition);
+            Bitmap monsterBitmap = LoadMonsterBitmap(monster.Type);
+            Vector2D monsterPosition = GetSpritePosition(monster.GetLocation(), monsterBitmap.Width, monsterBitmap.Height);
+            DrawCharacterWithFlash(monster, monsterBitmap, monsterPosition);
 
-            Vector2D healthBarPosition = new Vector2D() { X = goblinPosition.X, Y = goblinPosition.Y - 10 };
-            DrawHealth(goblin.Health, healthBarPosition);
+            Vector2D healthBarPosition = new Vector2D() { X = monsterPosition.X, Y = monsterPosition.Y - 10 };
+            DrawHealth(monster.Health, healthBarPosition);
 
             if (showHitboxes)
             {
-                goblin.DrawHitbox(Color.Purple, goblinBitmap.Width, goblinBitmap.Height);
-                DrawChaseRange(goblin);
-            }
-        }
-
-        foreach (Wolf wolf in wolfs)
-        {
-            Bitmap wolfBitmap = SplashKit.LoadBitmap("wolf_bitmap", "asset\\wolf.png");
-            if (wolfBitmap == null)
-            {
-                Console.WriteLine("Error: Could not load wolf.png!");
-                Environment.Exit(1);
-            }
-            Vector2D wolfPosition = GetSpritePosition(wolf.GetLocation(), wolfBitmap.Width, wolfBitmap.Height);
-            DrawCharacterWithFlash(wolf, wolfBitmap, wolfPosition);
-
-            Vector2D healthBarPosition = new Vector2D() { X = wolfPosition.X, Y = wolfPosition.Y - 10 };
-            DrawHealth(wolf.Health, healthBarPosition);
-
-            if (showHitboxes)
-            {
-                wolf.DrawHitbox(Color.Purple, wolfBitmap.Width, wolfBitmap.Height);
-                DrawChaseRange(wolf);
-            }
-        }
-
-        foreach (Spider spider in spiders)
-        {
-            Bitmap spiderBitmap = SplashKit.LoadBitmap("spider_bitmap", "asset\\spider.png");
-            if (spiderBitmap == null)
-            {
-                Console.WriteLine("Error: Could not load spider.png!");
-                Environment.Exit(1);
-            }
-            Vector2D spiderPosition = GetSpritePosition(spider.GetLocation(), spiderBitmap.Width, spiderBitmap.Height);
-            DrawCharacterWithFlash(spider, spiderBitmap, spiderPosition);
-
-            Vector2D healthBarPosition = new Vector2D() { X = spiderPosition.X, Y = spiderPosition.Y - 10 };
-            DrawHealth(spider.Health, healthBarPosition);
-
-            if (showHitboxes)
-            {
-                spider.DrawHitbox(Color.Purple, spiderBitmap.Width, spiderBitmap.Height);
-                DrawChaseRange(spider);
+                monster.DrawHitbox(Color.Purple, monsterBitmap.Width, monsterBitmap.Height);
+                DrawChaseRange(monster);
             }
         }
 
@@ -114,6 +70,21 @@ public static class GameDrawer
         DrawDroppedItems(Goblin.DroppedItems);
         DrawDroppedItems(Wolf.DroppedItems);
         DrawDroppedItems(Spider.DroppedItems);
+    }
+
+    private static Bitmap LoadMonsterBitmap(MonsterType type)
+    {
+        switch (type)
+        {
+            case MonsterType.Goblin:
+                return SplashKit.LoadBitmap("goblin_bitmap", "asset\\goblin.png");
+            case MonsterType.Wolf:
+                return SplashKit.LoadBitmap("wolf_bitmap", "asset\\wolf.png");
+            case MonsterType.Spider:
+                return SplashKit.LoadBitmap("spider_bitmap", "asset\\spider.png");
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     private static void DrawFloor(Bitmap floorBitmap)
@@ -173,9 +144,14 @@ public static class GameDrawer
         DrawTextWithOutline($"Ammo: {player.Ammunition}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 60 });
     }
 
-    private static void DrawPlayerScore(int score, Vector2D position)
+    private static void DrawPlayerScore(int score, int highScore, Vector2D position)
     {
-        DrawTextWithOutline($"Score: {score}", Color.Black, Color.White, position);
+        string scoreText = $"Score: {score}";
+        string highScoreText = $"High Score: {highScore}";
+ 
+        DrawTextWithOutline(scoreText, Color.Black, Color.White, position);
+        DrawTextWithOutline(highScoreText, Color.Black, Color.White, new Vector2D() { X = position.X + 100, Y = position.Y });
+
     }
 
     private static void DrawTextWithOutline(string text, Color textColor, Color outlineColor, Vector2D position)
@@ -192,22 +168,10 @@ public static class GameDrawer
         SplashKit.DrawText(text, textColor, (float)position.X, (float)position.Y);
     }
 
-    private static void DrawChaseRange(Goblin goblin)
+    private static void DrawChaseRange(Monster monster)
     {
         const double chaseThreshold = 250.0;
-        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)goblin.GetLocation().X, (float)goblin.GetLocation().Y, (float)chaseThreshold);
-    }
-
-    private static void DrawChaseRange(Wolf wolf)
-    {
-        const double chaseThreshold = 250.0;
-        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)wolf.GetLocation().X, (float)wolf.GetLocation().Y, (float)chaseThreshold);
-    }
-
-    private static void DrawChaseRange(Spider spider)
-    {
-        const double chaseThreshold = 250.0;
-        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)spider.GetLocation().X, (float)spider.GetLocation().Y, (float)chaseThreshold);
+        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)monster.GetLocation().X, (float)monster.GetLocation().Y, (float)chaseThreshold);
     }
 
     public static void DrawDroppedItems(List<Item> items)

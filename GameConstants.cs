@@ -8,7 +8,7 @@ namespace Cave_dweller
 {
     public static class GameConstants
     {
-        public const double GameWidth = 1600; // Replace with your actual game width
-        public const double GameHeight = 900; // Replace with your actual game height
+        public const double GameWidth = 800; // Replace with your actual game width
+        public const double GameHeight = 450; // Replace with your actual game height
     }
 }

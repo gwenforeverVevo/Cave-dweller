@@ -13,7 +13,7 @@ public class Program
         // Hide the system cursor
         ShowCursor(false);
 
-        Window window = new Window("Cave_dweller", 1600, 900);
+        Window window = new Window("Cave_dweller", 1920, 1080);
         Game game = new Game();
         do
         {

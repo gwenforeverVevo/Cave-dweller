@@ -194,7 +194,7 @@ namespace Cave_dweller
             }
         }
 
-        public void AttackPlayer(Player player)
+        public  override void AttackPlayer(Player player)
         {
             if (SplashKit.RectanglesIntersect(this.Hitbox, player.Hitbox) && IsAttackCooldownElapsed())
             {
@@ -213,7 +213,7 @@ namespace Cave_dweller
             return SplashKit.TimerTicks(_attackCooldownTimer) > AttackCooldownDuration;
         }
 
-        public Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
+        public override Rectangle Hitbox => SplashKit.RectangleFrom(Location.X - 5, Location.Y - 5, 60, 60);
 
         private void PrintState(string state)
         {
