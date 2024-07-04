@@ -1,5 +1,4 @@
-﻿// File path: Cave_dweller/Player.cs
-using System;
+﻿using System;
 using System.Collections.Generic;
 using SplashKitSDK;
 
@@ -20,14 +19,13 @@ namespace Cave_dweller
         private static SoundEffect _hitSound;
         private Inventory _inventory;
         private bool _isFacingRight;
-        public bool IsFacingRight => _isFacingRight; // Public property to access the facing direction
+        public bool IsFacingRight => _isFacingRight;
         public int Damage { get; private set; }
         public double Speed { get; private set; }
 
-
         static Player()
         {
-            _hitSound = SplashKit.LoadSoundEffect("hit_sound", "asset/hit.wav"); // Load hit sound
+            _hitSound = SplashKit.LoadSoundEffect("hit_sound", "asset/hit.wav");
         }
 
         public Player(int initialHealth, int initialAmmo, Vector2D startLocation, double speed = 1)
@@ -41,7 +39,7 @@ namespace Cave_dweller
             _lastReloadTime = 0;
             _isReloading = false;
             _showReloadPrompt = false;
-            Speed = speed; // Initialize speed
+            Speed = speed;
             _inventory = new Inventory();
             Damage = 10;
             _isFacingRight = true;
@@ -50,8 +48,8 @@ namespace Cave_dweller
         public override void Move(Vector2D direction)
         {
             Vector2D newLocation = GetLocation();
-            newLocation.X += direction.X * Speed; // Apply speed multiplier
-            newLocation.Y += direction.Y * Speed; // Apply speed multiplier
+            newLocation.X += direction.X * Speed;
+            newLocation.Y += direction.Y * Speed;
             SetLocation(newLocation);
             Facing = direction;
 
@@ -73,7 +71,7 @@ namespace Cave_dweller
                 Console.WriteLine("Player has died.");
                 IsDead = true;
             }
-            SplashKit.PlaySoundEffect(_hitSound); // Play hit sound
+            SplashKit.PlaySoundEffect(_hitSound);
         }
 
         public bool IsDead { get; private set; } = false;
@@ -84,11 +82,11 @@ namespace Cave_dweller
             if (Ammunition > 0)
             {
                 Vector2D startPosition = GetLocation();
-                startPosition.X += 25; // Adjusted for hitbox center
-                startPosition.Y += 25; // Adjusted for hitbox center
+                startPosition.X += 25;
+                startPosition.Y += 25;
                 Vector2D direction = VectorUtils.SubtractVectors(target, startPosition);
-                direction = SplashKit.UnitVector(direction); // Normalize direction vector
-                Projectile newProjectile = new Projectile(startPosition, direction, Damage); // Pass the player's damage to the projectile
+                direction = SplashKit.UnitVector(direction);
+                Projectile newProjectile = new Projectile(startPosition, direction, Damage);
                 Projectiles.Add(newProjectile);
                 Ammunition--;
                 if (Ammunition == 0)
@@ -142,11 +140,11 @@ namespace Cave_dweller
         {
             if (!string.IsNullOrEmpty(_reloadMessage))
             {
-                SplashKit.DrawText(_reloadMessage, Color.Black, GetLocation().X, GetLocation().Y - 100); // Adjusted Y-coordinate
+                SplashKit.DrawText(_reloadMessage, Color.Black, GetLocation().X, GetLocation().Y - 100);
             }
             else if (_showReloadPrompt)
             {
-                SplashKit.DrawText("Press 'R' to reload your weapon", Color.Black, GetLocation().X - 100, GetLocation().Y - 100); // Adjusted Y-coordinate
+                SplashKit.DrawText("Press 'R' to reload your weapon", Color.Black, GetLocation().X - 100, GetLocation().Y - 100);
             }
         }
 
@@ -160,14 +158,14 @@ namespace Cave_dweller
 
         public void DrawHitbox(Color color)
         {
-            int spriteWidth = 50; // Assuming player sprite width
-            int spriteHeight = 50; // Assuming player sprite height
+            int spriteWidth = 50;
+            int spriteHeight = 50;
             base.DrawHitbox(color, spriteWidth, spriteHeight);
         }
 
         public void SetSpeed(double speed)
         {
-            Speed = speed; // Method to set player speed
+            Speed = speed;
         }
 
         public void IncreaseSpeed(double amount)
@@ -216,7 +214,6 @@ namespace Cave_dweller
             }
         }
 
-
         public void PickUpItem(Item item)
         {
             AddItem(item);
@@ -224,5 +221,4 @@ namespace Cave_dweller
             item.ApplyEffect(this);
         }
     }
-
 }
