@@ -1,5 +1,4 @@
-﻿// File path: Cave_dweller/ProjectileManager.cs
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SplashKitSDK;
 
 namespace Cave_dweller
@@ -23,6 +22,7 @@ namespace Cave_dweller
                         projectilesToRemove.Add(projectile);
                         if (goblin.Health <= 0)
                         {
+                            player.IncreaseScore(10); // Add points for killing a goblin
                             goblinsToRemove.Add(goblin);
                         }
                         break; // Stop checking other goblins once hit
@@ -44,6 +44,7 @@ namespace Cave_dweller
                         projectilesToRemove.Add(projectile);
                         if (wolf.Health <= 0)
                         {
+                            player.IncreaseScore(20); // Add points for killing a wolf
                             wolfsToRemove.Add(wolf);
                         }
                         break; // Stop checking other wolfs once hit
@@ -55,23 +56,24 @@ namespace Cave_dweller
                     wolfs.Remove(wolf);
                 }
 
-                // Check for collisions with wolfs
-                List<Spider> spiderToRemove = new List<Spider>();
+                // Check for collisions with spiders
+                List<Spider> spidersToRemove = new List<Spider>();
                 foreach (Spider spider in spiders)
                 {
                     if (SplashKit.RectanglesIntersect(projectile.Hitbox, spider.Hitbox))
                     {
-                        spider.TakeDamage(projectile.Damage); // Apply projectile damage to the wolf
+                        spider.TakeDamage(projectile.Damage); // Apply projectile damage to the spider
                         projectilesToRemove.Add(projectile);
                         if (spider.Health <= 0)
                         {
-                            spiderToRemove.Add(spider);
+                            player.IncreaseScore(30); // Add points for killing a spider
+                            spidersToRemove.Add(spider);
                         }
-                        break; // Stop checking other spider once hit
+                        break; // Stop checking other spiders once hit
                     }
                 }
-                // Remove dead spider
-                foreach (Spider spider in spiderToRemove)
+                // Remove dead spiders
+                foreach (Spider spider in spidersToRemove)
                 {
                     spiders.Remove(spider);
                 }

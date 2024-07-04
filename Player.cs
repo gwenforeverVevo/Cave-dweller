@@ -22,6 +22,7 @@ namespace Cave_dweller
         public bool IsFacingRight => _isFacingRight;
         public int Damage { get; private set; }
         public double Speed { get; private set; }
+        public int Score { get; private set; }
 
         static Player()
         {
@@ -43,6 +44,13 @@ namespace Cave_dweller
             _inventory = new Inventory();
             Damage = 10;
             _isFacingRight = true;
+            Score = 0;
+        }
+
+        public void IncreaseScore(int amount)
+        {
+            Score += amount;
+            Console.WriteLine($"Player score increased by {amount}. New score: {Score}");
         }
 
         public override void Move(Vector2D direction)

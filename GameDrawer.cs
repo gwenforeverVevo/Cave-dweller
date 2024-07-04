@@ -32,6 +32,7 @@ public static class GameDrawer
         DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
         DrawPlayerStats(player, new Vector2D() { X = 10, Y = 70 });
         player.DrawReloadMessage();
+        DrawPlayerScore(player.Score, new Vector2D() { X = SplashKit.ScreenWidth() / 2, Y = 10 });
 
         if (showHitboxes)
         {
@@ -170,6 +171,11 @@ public static class GameDrawer
         DrawTextWithOutline($"Damage: {player.Damage}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 20 });
         DrawTextWithOutline($"Speed: {player.Speed}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 40 });
         DrawTextWithOutline($"Ammo: {player.Ammunition}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 60 });
+    }
+
+    private static void DrawPlayerScore(int score, Vector2D position)
+    {
+        DrawTextWithOutline($"Score: {score}", Color.Black, Color.White, position);
     }
 
     private static void DrawTextWithOutline(string text, Color textColor, Color outlineColor, Vector2D position)
