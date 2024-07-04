@@ -182,6 +182,12 @@ namespace Cave_dweller
             Console.WriteLine($"Player damage increased to {Damage}.");
         }
 
+        public void IncreaseHealth(int amount)
+        {
+            _health += amount;
+            Console.WriteLine($"Player health increased by {amount}. New health: {_health}");
+        }
+
         public Rectangle Hitbox => SplashKit.RectangleFrom(GetLocation().X - 5, GetLocation().Y - 5, 60, 60);
 
         public void Update()

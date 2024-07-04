@@ -3,11 +3,12 @@ using SplashKitSDK;
 
 public static class GameDrawer
 {
-    public static void DrawGame(Player player, List<Goblin> goblins, List<Wolf> wolfs, List<Bitmap> playerRunRightFrames, List<Bitmap> playerRunLeftFrames, Bitmap playerRestBitmap, int currentFrame, bool isMoving, bool showHitboxes, Bitmap floorBitmap)
+    public static void DrawGame(Player player, List<Goblin> goblins, List<Wolf> wolfs, List<Spider> spiders, List<Bitmap> playerRunRightFrames, List<Bitmap> playerRunLeftFrames, Bitmap playerRestBitmap, int currentFrame, bool isMoving, bool showHitboxes, Bitmap floorBitmap)
     {
         DrawFloor(floorBitmap);
 
         Vector2D playerPosition = GetSpritePosition(player.GetLocation(), playerRestBitmap.Width, playerRestBitmap.Height);
+        DrawCharacterWithFlash(player, playerRunRightFrames[currentFrame], playerPosition);
 
         if (isMoving)
         {
@@ -43,8 +44,7 @@ public static class GameDrawer
                 Console.WriteLine("Error: Could not load goblin.png!");
                 Environment.Exit(1);
             }
-
-            Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(), goblinBitmap.Width, goblinBitmap.Height);
+            Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(),goblinBitmap.Width, goblinBitmap.Height);
             DrawCharacterWithFlash(goblin, goblinBitmap, goblinPosition);
 
             Vector2D healthBarPosition = new Vector2D() { X = goblinPosition.X, Y = goblinPosition.Y - 10 };
@@ -55,6 +55,8 @@ public static class GameDrawer
                 goblin.DrawHitbox(Color.Purple, goblinBitmap.Width, goblinBitmap.Height);
                 DrawChaseRange(goblin);
             }
+
+
         }
 
         foreach (Wolf wolf in wolfs)
@@ -79,6 +81,28 @@ public static class GameDrawer
             }
         }
 
+        foreach (Spider spider in spiders)
+        {
+            Bitmap spiderBitmap = SplashKit.LoadBitmap("spider_bitmap", "asset\\spider.png");
+            if (spiderBitmap == null)
+            {
+                Console.WriteLine("Error: Could not load spider.png!");
+                Environment.Exit(1);
+            }
+
+            Vector2D spiderPosition = GetSpritePosition(spider.GetLocation(), spiderBitmap.Width, spiderBitmap.Height);
+            DrawCharacterWithFlash(spider, spiderBitmap, spiderPosition);
+
+            Vector2D healthBarPosition = new Vector2D() { X = spiderPosition.X, Y = spiderPosition.Y - 10 };
+            DrawHealth(spider.Health, healthBarPosition);
+
+            if (showHitboxes)
+            {
+                spider.DrawHitbox(Color.Purple, spiderBitmap.Width, spiderBitmap.Height);
+                DrawChaseRange(spider);
+            }
+        }
+
         foreach (Projectile projectile in player.Projectiles)
         {
             projectile.Draw();
@@ -89,6 +113,8 @@ public static class GameDrawer
         }
 
         DrawDroppedItems(Goblin.DroppedItems);
+        DrawDroppedItems(Wolf.DroppedItems);
+        DrawDroppedItems(Spider.DroppedItems);
     }
 
     private static void DrawFloor(Bitmap floorBitmap)
@@ -97,7 +123,6 @@ public static class GameDrawer
         int screenHeight = SplashKit.ScreenHeight();
         int tileWidth = floorBitmap.Width;
         int tileHeight = floorBitmap.Height;
-
         for (int x = 0; x < screenWidth; x += tileWidth)
         {
             for (int y = 0; y < screenHeight; y += tileHeight)
@@ -180,11 +205,19 @@ public static class GameDrawer
         SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)wolf.GetLocation().X, (float)wolf.GetLocation().Y, (float)chaseThreshold);
     }
 
+    private static void DrawChaseRange(Spider spider)
+    {
+        const double chaseThreshold = 250.0;
+        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)spider.GetLocation().X, (float)spider.GetLocation().Y, (float)chaseThreshold);
+    }
+
     public static void DrawDroppedItems(List<Item> items)
     {
         foreach (Item item in items)
         {
-            SplashKit.DrawBitmap(item.Image, (float)item.Position.X, (float)item.Position.Y);
+
+            SplashKit.DrawBitmap(item.Image, (float)item.Position.X,(float)item.Position.Y);
+
         }
     }
 }

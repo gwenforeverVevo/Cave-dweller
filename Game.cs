@@ -6,6 +6,7 @@ public class Game
     private Player _player;
     private List<Goblin> _goblins;
     private List<Wolf> _wolfs;
+    private List<Spider> _spiders;
     private List<Bitmap> _playerRunRightFrames;
     private List<Bitmap> _playerRunLeftFrames;
     private Bitmap _playerRestBitmap;
@@ -20,8 +21,10 @@ public class Game
     private bool _gameOver;
     private List<FloatingText> _floatingTexts;
 
+
     public Game()
     {
+       
         _player = new Player(3, 10, new Vector2D() { X = 100, Y = 100 }, 0.6);
         _goblins = new List<Goblin>
         {
@@ -33,6 +36,12 @@ public class Game
         {
             new Wolf(new Vector2D() { X = 600, Y = 500 }),
             new Wolf(new Vector2D() { X = 600, Y = 400 })
+        };
+
+        _spiders = new List<Spider>
+        {
+            new Spider(new Vector2D() { X = 600, Y = 500 }),
+            new Spider(new Vector2D() { X = 600, Y = 400 })
         };
 
         AssetLoader assetLoader = new AssetLoader();
@@ -68,9 +77,12 @@ public class Game
         }
 
         GameStateUpdater.UpdateGameState(_player, _goblins);
-        ProjectileManager.UpdateProjectiles(_player, _goblins);
-       
+        GameStateUpdater.UpdateGameState(_player, _wolfs);
+        GameStateUpdater.UpdateGameState(_player, _spiders);
 
+        ProjectileManager.UpdateProjectiles(_player, _goblins, _wolfs, _spiders);
+
+        
         int playerSpriteWidth = _playerRestBitmap.Width;
         int playerSpriteHeight = _playerRestBitmap.Height;
         InputHandler.HandleInput(_player, ref _isMoving, playerSpriteWidth, playerSpriteHeight);
@@ -81,6 +93,26 @@ public class Game
         foreach (Goblin goblin in _goblins)
         {
             goblin.AttackPlayer(_player);
+            if (_player.IsDead)
+            {
+                _gameOver = true;
+                return;
+            }
+        }
+
+        foreach (Wolf wolf in _wolfs)
+        {
+            wolf.AttackPlayer(_player);
+            if (_player.IsDead)
+            {
+                _gameOver = true;
+                return;
+            }
+        }
+
+        foreach (Spider spider in _spiders)
+        {
+            spider.AttackPlayer(_player);
             if (_player.IsDead)
             {
                 _gameOver = true;
@@ -108,6 +140,26 @@ public class Game
                 _floatingTexts.Add(new FloatingText($"Picked up: {item.Name}", Color.Green, new Vector2D { X = item.Position.X, Y = item.Position.Y }));
             }
         }
+
+        foreach (var item in Wolf.DroppedItems.ToList())
+        {
+            if (SplashKit.RectanglesIntersect(_player.Hitbox, item.Hitbox))
+            {
+                _player.PickUpItem(item);
+                Wolf.DroppedItems.Remove(item);
+                _floatingTexts.Add(new FloatingText($"Picked up: {item.Name}", Color.White, new Vector2D { X = item.Position.X, Y = item.Position.Y }));
+            }
+        }
+
+        foreach (var item in Spider.DroppedItems.ToList())
+        {
+            if (SplashKit.RectanglesIntersect(_player.Hitbox, item.Hitbox))
+            {
+                _player.PickUpItem(item);
+                Spider.DroppedItems.Remove(item);
+                _floatingTexts.Add(new FloatingText($"Picked up: {item.Name}", Color.White, new Vector2D { X = item.Position.X, Y = item.Position.Y }));
+            }
+        }
     }
 
     private void UpdateFloatingTexts()
@@ -133,7 +185,7 @@ public class Game
             return;
         }
 
-        GameDrawer.DrawGame(_player, _goblins, _wolfs, _playerRunRightFrames, _playerRunLeftFrames, _playerRestBitmap, _currentFrame, _isMoving, _showHitboxes, _floorBitmap);
+        GameDrawer.DrawGame(_player, _goblins, _wolfs,_spiders, _playerRunRightFrames, _playerRunLeftFrames, _playerRestBitmap, _currentFrame, _isMoving, _showHitboxes, _floorBitmap);
         _player.DrawReloadMessage();
 
         foreach (var floatingText in _floatingTexts)

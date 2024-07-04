@@ -1,4 +1,4 @@
-﻿// File path: Cave_dweller/Item.cs
+﻿
 using Cave_dweller;
 using SplashKitSDK;
 
@@ -16,6 +16,11 @@ public class Item
         Description = description;
         _effect = effect;
         Image = SplashKit.LoadBitmap(name, imagePath);
+        if (Image == null)
+        {
+            Console.WriteLine($"Error: Could not load {imagePath}!");
+            Environment.Exit(1);
+        }
     }
 
     public void Use(Player player)

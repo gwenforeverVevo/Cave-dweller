@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Cave_dweller
 {
-    public class Wolf : Monster
+    public class Wolf : Monster, IInventory
     {
         private const double ChaseThreshold = 250.0;
-        private const double WolfSpeed = 0.5;
+        private const double WolfSpeed = 0.7;
         private const double WanderSpeed = 0.15;
         private const int WanderMoveDuration = 2000;
         private const int WanderStopDuration = 3000;
@@ -28,7 +28,7 @@ namespace Cave_dweller
         public static List<Item> DroppedItems { get; } = new List<Item>();
 
         public Wolf(Vector2D startLocation)
-        : base(20, startLocation, MonsterType.Wolf, MovementPattern.Wandering) // Set health to 20
+            : base(20, startLocation, MonsterType.Wolf, MovementPattern.Wandering)
         {
             _smokeBitmap = SplashKit.LoadBitmap("smoke", "asset\\smoke.gif");
             if (_smokeBitmap == null)
@@ -49,13 +49,12 @@ namespace Cave_dweller
             _attackCooldownTimer = SplashKit.CreateTimer("attack_cooldown_timer" + wolfCounter);
             SplashKit.StartTimer(_attackCooldownTimer);
             _inventory = new Inventory();
-            _inventory.AddItem(new Item("Wolf's Leg", "A leg of a wolf. Increases your speed when used.", "asset\\wolfLeg.png", player => player?.IncreaseSpeed(0.2)));
+            _inventory.AddItem(new Item("Wolf Leg", "A leg of a wolf. Increases your speed when used.", "asset\\wolfLeg.png", player => player?.IncreaseSpeed(0.2)));
         }
 
         public override void UpdateMovement(Vector2D playerLocation)
         {
             double distanceToPlayer = VectorUtils.DistanceTo(Location, playerLocation);
-
             if (distanceToPlayer < ChaseThreshold)
             {
                 if (!_isChasing)
@@ -85,11 +84,13 @@ namespace Cave_dweller
         {
             _isChasing = true;
             _isWandering = false;
+            movementPattern = MovementPattern.Chasing;
         }
 
         private void StopChasing()
         {
             _isChasing = false;
+            movementPattern = MovementPattern.Wandering;
             ResetWanderTimer();
         }
 
@@ -185,8 +186,6 @@ namespace Cave_dweller
             {
                 Console.WriteLine($"{_wolfId} has died.");
                 SplashKit.DrawBitmap(_smokeBitmap, (float)Location.X, (float)Location.Y);
-
-                // Drop items on death
                 List<Item> itemsToDrop = new List<Item>(_inventory.GetItems());
                 foreach (Item item in itemsToDrop)
                 {
@@ -199,7 +198,7 @@ namespace Cave_dweller
         {
             if (SplashKit.RectanglesIntersect(this.Hitbox, player.Hitbox) && IsAttackCooldownElapsed())
             {
-                player.TakeDamage(1);
+                player.TakeDamage(2);
                 ResetAttackCooldownTimer();
             }
         }
@@ -224,7 +223,6 @@ namespace Cave_dweller
         public void Update()
         {
             UpdateFlash();
-            // Other update logic...
         }
 
         // Inventory Methods
@@ -239,7 +237,6 @@ namespace Cave_dweller
             DroppedItems.Add(item);
             Console.WriteLine($"Dropped item '{item.Name}' at location ({position.X}, {position.Y}).");
         }
-
         public List<Item> GetItems() => _inventory.GetItems();
     }
 }
