@@ -7,8 +7,9 @@ namespace Cave_dweller
 {
     public class Inventory
     {
-        private List<Item> _items;
 
+        private List<Item> _items;
+        // Constructor initializing the items list
         public Inventory()
         {
             _items = new List<Item>();
@@ -29,6 +30,7 @@ namespace Cave_dweller
             return _items.Contains(item);
         }
 
+        // Uses an item from the inventory and optionally removes it after use
         public void UseItem(Item item, Player? player)
         {
             if (ContainsItem(item) && player != null)
@@ -38,19 +40,22 @@ namespace Cave_dweller
             }
         }
 
+        // Fetches an item from the inventory by name
         public Item? Fetch(string name)
         {
             return _items.FirstOrDefault(item => item.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
 
+        // Gets the list of items in the inventory
         public List<Item> GetItems()
         {
             return _items;
         }
 
+        // Gets the list of items in the inventory
         public void DropItem(Item item, Vector2D position)
         {
-            // Here you can define what happens when an item is dropped, for now we just remove it from the inventory
+            // Removes the item from the inventory and prints a message
             RemoveItem(item);
             Console.WriteLine($"Dropped item '{item.Name}' at location ({position.X}, {position.Y}).");
         }
