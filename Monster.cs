@@ -3,7 +3,7 @@ using SplashKitSDK;
 
 namespace Cave_dweller
 {
-    public enum MonsterType { Goblin }
+    public enum MonsterType { Goblin, Wolf, Spider }
     public enum MovementPattern { Wandering, Chasing }
 
     public abstract class Monster : Character

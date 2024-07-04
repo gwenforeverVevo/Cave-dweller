@@ -15,11 +15,12 @@ namespace Cave_dweller
                 projectile.Update();
                 // Check for collisions with goblins
                 List<Goblin> goblinsToRemove = new List<Goblin>();
+                List<Wolf> wolfsToRemove = new List<Wolf>();
                 foreach (Goblin goblin in goblins)
                 {
                     if (SplashKit.RectanglesIntersect(projectile.Hitbox, goblin.Hitbox))
                     {
-                        goblin.TakeDamage(projectile.Damage);
+                        goblin.TakeDamage(projectile.Damage); // Apply projectile damage to the goblin
                         projectilesToRemove.Add(projectile);
                         if (goblin.Health <= 0)
                         {
@@ -28,14 +29,12 @@ namespace Cave_dweller
                         break; // Stop checking other goblins once hit
                     }
                 }
-
                 // Remove dead goblins
                 foreach (Goblin goblin in goblinsToRemove)
                 {
                     goblins.Remove(goblin);
                 }
             }
-
             // Remove projectiles that hit a goblin
             foreach (Projectile projectile in projectilesToRemove)
             {

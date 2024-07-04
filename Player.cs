@@ -17,17 +17,20 @@ namespace Cave_dweller
         private double _lastReloadTime;
         private bool _isReloading;
         private bool _showReloadPrompt;
-        private double _speed;
-        private int _damage;
         private static SoundEffect _hitSound;
         private Inventory _inventory;
+        private bool _isFacingRight;
+        public bool IsFacingRight => _isFacingRight; // Public property to access the facing direction
+        public int Damage { get; private set; }
+        public double Speed { get; private set; }
+
 
         static Player()
         {
             _hitSound = SplashKit.LoadSoundEffect("hit_sound", "asset/hit.wav"); // Load hit sound
         }
 
-        public Player(int initialHealth, int initialAmmo, Vector2D startLocation, double speed = 1.0)
+        public Player(int initialHealth, int initialAmmo, Vector2D startLocation, double speed = 1)
             : base(initialHealth, startLocation)
         {
             Ammunition = initialAmmo;
@@ -38,18 +41,28 @@ namespace Cave_dweller
             _lastReloadTime = 0;
             _isReloading = false;
             _showReloadPrompt = false;
-            _speed = speed; // Initialize speed
+            Speed = speed; // Initialize speed
             _inventory = new Inventory();
-            _damage = 10; // Initial damage
+            Damage = 10;
+            _isFacingRight = true;
         }
 
         public override void Move(Vector2D direction)
         {
             Vector2D newLocation = GetLocation();
-            newLocation.X += direction.X * _speed; // Apply speed multiplier
-            newLocation.Y += direction.Y * _speed; // Apply speed multiplier
+            newLocation.X += direction.X * Speed; // Apply speed multiplier
+            newLocation.Y += direction.Y * Speed; // Apply speed multiplier
             SetLocation(newLocation);
             Facing = direction;
+
+            if (direction.X > 0)
+            {
+                _isFacingRight = true;
+            }
+            else if (direction.X < 0)
+            {
+                _isFacingRight = false;
+            }
         }
 
         public override void TakeDamage(int amount)
@@ -75,7 +88,7 @@ namespace Cave_dweller
                 startPosition.Y += 25; // Adjusted for hitbox center
                 Vector2D direction = VectorUtils.SubtractVectors(target, startPosition);
                 direction = SplashKit.UnitVector(direction); // Normalize direction vector
-                Projectile newProjectile = new Projectile(startPosition, direction);
+                Projectile newProjectile = new Projectile(startPosition, direction, Damage); // Pass the player's damage to the projectile
                 Projectiles.Add(newProjectile);
                 Ammunition--;
                 if (Ammunition == 0)
@@ -154,13 +167,19 @@ namespace Cave_dweller
 
         public void SetSpeed(double speed)
         {
-            _speed = speed; // Method to set player speed
+            Speed = speed; // Method to set player speed
+        }
+
+        public void IncreaseSpeed(double amount)
+        {
+            Speed += amount;
+            Console.WriteLine($"Player speed increased by {amount}. New speed: {Speed}");
         }
 
         public void IncreaseDamage(int amount)
         {
-            _damage += amount;
-            Console.WriteLine($"Player damage increased to {_damage}.");
+            Damage += amount;
+            Console.WriteLine($"Player damage increased to {Damage}.");
         }
 
         public Rectangle Hitbox => SplashKit.RectangleFrom(GetLocation().X - 5, GetLocation().Y - 5, 60, 60);
@@ -191,10 +210,13 @@ namespace Cave_dweller
             }
         }
 
+
         public void PickUpItem(Item item)
         {
             AddItem(item);
             Console.WriteLine($"Picked up item: {item.Name}");
+            item.ApplyEffect(this);
         }
     }
+
 }

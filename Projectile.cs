@@ -10,19 +10,20 @@ namespace Cave_dweller
         public int Damage { get; private set; }
         private double _angle;
 
-        public Projectile(Vector2D startPosition, Vector2D direction)
+        public Projectile(Vector2D startPosition, Vector2D direction, int playerDamage)
         {
             _position = startPosition;
-            _velocity = SplashKit.UnitVector(direction); // Ensure velocity is unit vector
+            _velocity = SplashKit.UnitVector(direction);
             _bitmap = SplashKit.LoadBitmap("projectile", "asset\\projectile.png");
             if (_bitmap == null)
             {
                 Console.WriteLine("Error: Could not load projectile.png!");
                 Environment.Exit(1);
             }
-            Damage = 2;
+            Damage = playerDamage; // Set the projectile's damage to the player's damage
             _angle = SplashKit.VectorAngle(_velocity);
         }
+
 
         public void Update()
         {

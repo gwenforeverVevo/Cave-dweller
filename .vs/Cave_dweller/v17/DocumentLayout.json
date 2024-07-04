@@ -3,56 +3,80 @@
   "WorkspaceRootPath": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\goblin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:goblin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\iinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:iinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\gamedrawer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:gamedrawer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\floatingtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:floatingtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\wolf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:wolf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\animationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:animationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\projectilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:projectilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\inputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:inputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\goblin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:goblin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\gamedrawer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:gamedrawer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:assetloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\gamestateupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:gamestateupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\vectorutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:vectorutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\animationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:animationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\iinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:iinventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:character.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\inputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:inputhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\desktop.ini||{3B902123-F8A7-4915-9F01-361F908088D0}",
@@ -61,26 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\spider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:spider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\vectorutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:vectorutils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\projectilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:projectilemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\gamestateupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:gamestateupdater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\wolf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|solutionrelative:wolf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8AEA19C7-02D9-4B04-946B-BE9D7BFF4105}|Cave_dweller.csproj|d:\\some stuff\\college\\cos20007 object oriented programming\\cave-dweller\\lib\\splashkit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -94,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -106,130 +110,104 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Game.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Game.cs",
-              "RelativeDocumentMoniker": "Game.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Game.cs",
-              "RelativeToolTip": "Game.cs",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAAAGwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T16:07:19.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GameDrawer.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\GameDrawer.cs",
-              "RelativeDocumentMoniker": "GameDrawer.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\GameDrawer.cs",
-              "RelativeToolTip": "GameDrawer.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAswHoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T07:39:45.344Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "IInventory.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\IInventory.cs",
-              "RelativeDocumentMoniker": "IInventory.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\IInventory.cs",
-              "RelativeToolTip": "IInventory.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Title": "Wolf.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Wolf.cs",
+              "RelativeDocumentMoniker": "Wolf.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Wolf.cs",
+              "RelativeToolTip": "Wolf.cs",
+              "ViewState": "AQIAAMMAAAAAAAAAAAAcwOIAAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T14:19:53.292Z",
+              "WhenOpened": "2024-07-04T04:45:07.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Goblin.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Goblin.cs",
-              "RelativeDocumentMoniker": "Goblin.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Goblin.cs",
-              "RelativeToolTip": "Goblin.cs",
-              "ViewState": "AQIAANMAAAAAAAAAAAAmwPoAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T16:09:02.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Player.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Player.cs",
-              "RelativeDocumentMoniker": "Player.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Player.cs",
-              "RelativeToolTip": "Player.cs",
-              "ViewState": "AQIAAKAAAAAAAAAAAAAuwMgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T16:06:35.346Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Character.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Character.cs",
-              "RelativeDocumentMoniker": "Character.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Character.cs",
-              "RelativeToolTip": "Character.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAkwEgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T14:31:33.35Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AssetLoader.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AssetLoader.cs",
-              "RelativeDocumentMoniker": "AssetLoader.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AssetLoader.cs",
-              "RelativeToolTip": "AssetLoader.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAiwDUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T05:05:59.267Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "AnimationManager.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AnimationManager.cs",
-              "RelativeDocumentMoniker": "AnimationManager.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AnimationManager.cs",
-              "RelativeToolTip": "AnimationManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T05:06:18.865Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "Projectile.cs",
               "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Projectile.cs",
               "RelativeDocumentMoniker": "Projectile.cs",
               "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Projectile.cs",
               "RelativeToolTip": "Projectile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAJAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAkwDIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-01T05:09:05.495Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
+              "Title": "ProjectileManager.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\ProjectileManager.cs",
+              "RelativeDocumentMoniker": "ProjectileManager.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\ProjectileManager.cs",
+              "RelativeToolTip": "ProjectileManager.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAACMAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T07:39:26.902Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Game.cs",
+              "RelativeDocumentMoniker": "Game.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Game.cs",
+              "RelativeToolTip": "Game.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAQwHcAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T16:07:19.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FloatingText.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\FloatingText.cs",
+              "RelativeDocumentMoniker": "FloatingText.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\FloatingText.cs",
+              "RelativeToolTip": "FloatingText.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAUwDsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-04T03:35:00.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Player.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Player.cs",
+              "RelativeDocumentMoniker": "Player.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Player.cs",
+              "RelativeToolTip": "Player.cs",
+              "ViewState": "AQIAALYAAAAAAAAAAAAuwN4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T16:06:35.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Monster.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Monster.cs",
+              "RelativeDocumentMoniker": "Monster.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Monster.cs",
+              "RelativeToolTip": "Monster.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T16:06:54.687Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Item.cs",
               "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Item.cs",
               "RelativeDocumentMoniker": "Item.cs",
               "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Item.cs",
               "RelativeToolTip": "Item.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-02T14:20:18.304Z",
               "EditorCaption": ""
@@ -237,110 +215,58 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T13:43:09.77Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "InputHandler.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\InputHandler.cs",
-              "RelativeDocumentMoniker": "InputHandler.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\InputHandler.cs",
-              "RelativeToolTip": "InputHandler.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T05:06:35.755Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
               "Title": "Inventory.cs",
               "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Inventory.cs",
               "RelativeDocumentMoniker": "Inventory.cs",
               "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Inventory.cs",
               "RelativeToolTip": "Inventory.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwDoAAAAAAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAAkwDoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-02T14:20:05.713Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "desktop.ini",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\desktop.ini",
-              "RelativeDocumentMoniker": "desktop.ini",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\desktop.ini",
-              "RelativeToolTip": "desktop.ini",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002768|",
-              "WhenOpened": "2024-07-01T11:43:43.284Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Spider.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Spider.cs",
-              "RelativeDocumentMoniker": "Spider.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Spider.cs",
-              "RelativeToolTip": "Spider.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "Goblin.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Goblin.cs",
+              "RelativeDocumentMoniker": "Goblin.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Goblin.cs",
+              "RelativeToolTip": "Goblin.cs",
+              "ViewState": "AQIAANIAAAAAAAAAAAAmwPkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T16:12:07.489Z",
+              "WhenOpened": "2024-06-03T16:09:02.224Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "VectorUtils.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\VectorUtils.cs",
-              "RelativeDocumentMoniker": "VectorUtils.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\VectorUtils.cs",
-              "RelativeToolTip": "VectorUtils.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAjAAAA",
+              "DocumentIndex": 10,
+              "Title": "GameDrawer.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\GameDrawer.cs",
+              "RelativeDocumentMoniker": "GameDrawer.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\GameDrawer.cs",
+              "RelativeToolTip": "GameDrawer.cs",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAUwL0AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-02T09:04:38.378Z",
+              "WhenOpened": "2024-07-01T07:39:45.344Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "ProjectileManager.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\ProjectileManager.cs",
-              "RelativeDocumentMoniker": "ProjectileManager.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\ProjectileManager.cs",
-              "RelativeToolTip": "ProjectileManager.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAmwC4AAAAAAAAA",
+              "DocumentIndex": 11,
+              "Title": "AssetLoader.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AssetLoader.cs",
+              "RelativeDocumentMoniker": "AssetLoader.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AssetLoader.cs",
+              "RelativeToolTip": "AssetLoader.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-01T07:39:26.902Z",
+              "WhenOpened": "2024-07-01T05:05:59.267Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Monster.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Monster.cs",
-              "RelativeDocumentMoniker": "Monster.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Monster.cs",
-              "RelativeToolTip": "Monster.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T16:06:54.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 12,
               "Title": "GameStateUpdater.cs",
               "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\GameStateUpdater.cs",
               "RelativeDocumentMoniker": "GameStateUpdater.cs",
@@ -353,20 +279,108 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Wolf.cs",
-              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Wolf.cs",
-              "RelativeDocumentMoniker": "Wolf.cs",
-              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Wolf.cs",
-              "RelativeToolTip": "Wolf.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "DocumentIndex": 13,
+              "Title": "VectorUtils.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\VectorUtils.cs",
+              "RelativeDocumentMoniker": "VectorUtils.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\VectorUtils.cs",
+              "RelativeToolTip": "VectorUtils.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T16:11:30.055Z",
+              "WhenOpened": "2024-07-02T09:04:38.378Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABcAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-28T13:43:09.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AnimationManager.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AnimationManager.cs",
+              "RelativeDocumentMoniker": "AnimationManager.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\AnimationManager.cs",
+              "RelativeToolTip": "AnimationManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T05:06:18.865Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IInventory.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\IInventory.cs",
+              "RelativeDocumentMoniker": "IInventory.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\IInventory.cs",
+              "RelativeToolTip": "IInventory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T14:19:53.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Character.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Character.cs",
+              "RelativeDocumentMoniker": "Character.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Character.cs",
+              "RelativeToolTip": "Character.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwCEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T14:31:33.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "InputHandler.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\InputHandler.cs",
+              "RelativeDocumentMoniker": "InputHandler.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\InputHandler.cs",
+              "RelativeToolTip": "InputHandler.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-01T05:06:35.755Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "desktop.ini",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\desktop.ini",
+              "RelativeDocumentMoniker": "desktop.ini",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\desktop.ini",
+              "RelativeToolTip": "desktop.ini",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002768|",
+              "WhenOpened": "2024-07-01T11:43:43.284Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 20,
+              "Title": "Spider.cs",
+              "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Spider.cs",
+              "RelativeDocumentMoniker": "Spider.cs",
+              "ToolTip": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\Spider.cs",
+              "RelativeToolTip": "Spider.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T16:12:07.489Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
               "Title": "SplashKit.cs",
               "DocumentMoniker": "D:\\some stuff\\college\\COS20007 Object Oriented Programming\\Cave-dweller\\lib\\SplashKit.cs",
               "RelativeDocumentMoniker": "lib\\SplashKit.cs",
@@ -374,8 +388,7 @@
               "RelativeToolTip": "lib\\SplashKit.cs",
               "ViewState": "AQIAAApAAAAAAAAAAADwvypAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-04T17:13:07.639Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-04T17:13:07.639Z"
             }
           ]
         }

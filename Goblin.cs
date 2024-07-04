@@ -13,7 +13,7 @@ namespace Cave_dweller
         private const int WanderMoveDuration = 2000;
         private const int WanderStopDuration = 3000;
         private const int ChaseCooldownDuration = 3000;
-        private const int AttackCooldownDuration = 1000; // 1 second cooldown
+        private const int AttackCooldownDuration = 1000;
         private SplashKitSDK.Timer _attackCooldownTimer;
         private Bitmap _smokeBitmap;
         private Vector2D _wanderDirection;
@@ -28,7 +28,7 @@ namespace Cave_dweller
         public static List<Item> DroppedItems { get; } = new List<Item>();
 
         public Goblin(Vector2D startLocation)
-            : base(10, startLocation, MonsterType.Goblin, MovementPattern.Wandering)
+        : base(20, startLocation, MonsterType.Goblin, MovementPattern.Wandering) // Set health to 20
         {
             _smokeBitmap = SplashKit.LoadBitmap("smoke", "asset\\smoke.gif");
             if (_smokeBitmap == null)
@@ -49,10 +49,7 @@ namespace Cave_dweller
             _attackCooldownTimer = SplashKit.CreateTimer("attack_cooldown_timer" + goblinCounter);
             SplashKit.StartTimer(_attackCooldownTimer);
             _inventory = new Inventory();
-
-            // Add GoblinFinger item to goblin's inventory
-            _inventory.AddItem(new Item("Goblin Finger", "A severed finger of a goblin. Increases your damage when used.",
-                "asset\\goblinFinger.png", player => player?.IncreaseDamage(1))); // Increases damage by 1
+            _inventory.AddItem(new Item("Goblin Finger", "A severed finger of a goblin. Increases your damage when used.", "asset\\goblinFinger.png", player => player?.IncreaseDamage(1)));
         }
 
         public override void UpdateMovement(Vector2D playerLocation)
@@ -185,7 +182,7 @@ namespace Cave_dweller
         public override void TakeDamage(int amount)
         {
             base.TakeDamage(amount);
-            Console.WriteLine($"{_goblinId} is hit!");
+            Console.WriteLine($"{_goblinId} is hit for {amount} damage!");
             if (_health <= 0)
             {
                 Console.WriteLine($"{_goblinId} has died.");
@@ -199,6 +196,8 @@ namespace Cave_dweller
                 }
             }
         }
+
+
 
         public void AttackPlayer(Player player)
         {

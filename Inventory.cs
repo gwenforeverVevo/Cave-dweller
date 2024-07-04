@@ -31,7 +31,7 @@ namespace Cave_dweller
 
         public void UseItem(Item item, Player? player)
         {
-            if (ContainsItem(item))
+            if (ContainsItem(item) && player != null)
             {
                 item.Use(player);
                 RemoveItem(item); // Optionally remove the item after use

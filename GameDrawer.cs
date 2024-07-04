@@ -1,122 +1,190 @@
-﻿// File path: Cave_dweller/GameDrawer.cs
-using System.Collections.Generic;
+﻿using Cave_dweller;
 using SplashKitSDK;
 
-namespace Cave_dweller
+public static class GameDrawer
 {
-    public static class GameDrawer
+    public static void DrawGame(Player player, List<Goblin> goblins, List<Wolf> wolfs, List<Bitmap> playerRunRightFrames, List<Bitmap> playerRunLeftFrames, Bitmap playerRestBitmap, int currentFrame, bool isMoving, bool showHitboxes, Bitmap floorBitmap)
     {
-        public static void DrawGame(Player player, List<Goblin> goblins, List<Bitmap> playerRunFrames, Bitmap playerRestBitmap, int currentFrame, bool isMoving, bool showHitboxes)
+        DrawFloor(floorBitmap);
+
+        Vector2D playerPosition = GetSpritePosition(player.GetLocation(), playerRestBitmap.Width, playerRestBitmap.Height);
+
+        if (isMoving)
         {
-            // Draw player with flash effect
-            Vector2D playerPosition = GetSpritePosition(player.GetLocation(), playerRestBitmap.Width, playerRestBitmap.Height);
-            if (isMoving)
+            if (player.IsFacingRight)
             {
-                DrawCharacterWithFlash(player, playerRunFrames[currentFrame], playerPosition);
+                DrawCharacterWithFlash(player, playerRunRightFrames[currentFrame], playerPosition);
             }
             else
             {
-                DrawCharacterWithFlash(player, playerRestBitmap, playerPosition);
+                DrawCharacterWithFlash(player, playerRunLeftFrames[currentFrame], playerPosition);
+            }
+        }
+        else
+        {
+            DrawCharacterWithFlash(player, playerRestBitmap, playerPosition);
+        }
+
+        DrawHealth(player.Health, new Vector2D() { X = 10, Y = 10 });
+        DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
+        DrawPlayerStats(player, new Vector2D() { X = 10, Y = 70 });
+        player.DrawReloadMessage();
+
+        if (showHitboxes)
+        {
+            player.DrawHitbox(Color.Purple, playerRestBitmap.Width, playerRestBitmap.Height);
+        }
+
+        foreach (Goblin goblin in goblins)
+        {
+            Bitmap goblinBitmap = SplashKit.LoadBitmap("goblin_bitmap", "asset\\goblin.png");
+            if (goblinBitmap == null)
+            {
+                Console.WriteLine("Error: Could not load goblin.png!");
+                Environment.Exit(1);
             }
 
-            // Draw player health
-            DrawHealth(player.Health, new Vector2D() { X = 10, Y = 10 });
-            // Draw player ammunition
-            DrawAmmunition(player.Ammunition, new Vector2D() { X = 10, Y = 40 });
-            // Draw player reloading message
-            player.DrawReloadMessage();
-            // Draw player hitbox if enabled
+            Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(), goblinBitmap.Width, goblinBitmap.Height);
+            DrawCharacterWithFlash(goblin, goblinBitmap, goblinPosition);
+
+            Vector2D healthBarPosition = new Vector2D() { X = goblinPosition.X, Y = goblinPosition.Y - 10 };
+            DrawHealth(goblin.Health, healthBarPosition);
+
             if (showHitboxes)
             {
-                player.DrawHitbox(Color.Purple, playerRestBitmap.Width, playerRestBitmap.Height);
+                goblin.DrawHitbox(Color.Purple, goblinBitmap.Width, goblinBitmap.Height);
+                DrawChaseRange(goblin);
             }
+        }
 
-            // Draw goblins with flash effect
-            foreach (Goblin goblin in goblins)
+        foreach (Wolf wolf in wolfs)
+        {
+            Bitmap wolfBitmap = SplashKit.LoadBitmap("wolf_bitmap", "asset\\wolf.png");
+            if (wolfBitmap == null)
             {
-                Bitmap goblinBitmap = SplashKit.LoadBitmap("goblin_bitmap", "asset\\goblin.png");
-                if (goblinBitmap == null)
-                {
-                    Console.WriteLine("Error: Could not load goblin.png!");
-                    Environment.Exit(1); // Exit if bitmap cannot be loaded
-                }
-                Vector2D goblinPosition = GetSpritePosition(goblin.GetLocation(), goblinBitmap.Width, goblinBitmap.Height);
-                DrawCharacterWithFlash(goblin, goblinBitmap, goblinPosition);
-
-                // Draw goblin health above the sprite
-                Vector2D healthBarPosition = new Vector2D() { X = goblinPosition.X, Y = goblinPosition.Y - 10 };
-                DrawHealth(goblin.Health, healthBarPosition);
-
-                // Draw goblin hitbox if enabled
-                if (showHitboxes)
-                {
-                    goblin.DrawHitbox(Color.Purple, goblinBitmap.Width, goblinBitmap.Height);
-                    DrawChaseRange(goblin); // Draw chase range when hitboxes are shown
-                }
+                Console.WriteLine("Error: Could not load wolf.png!");
+                Environment.Exit(1);
             }
 
-            // Draw player projectiles
-            foreach (Projectile projectile in player.Projectiles)
+            Vector2D wolfPosition = GetSpritePosition(wolf.GetLocation(), wolfBitmap.Width, wolfBitmap.Height);
+            DrawCharacterWithFlash(wolf, wolfBitmap, wolfPosition);
+
+            Vector2D healthBarPosition = new Vector2D() { X = wolfPosition.X, Y = wolfPosition.Y - 10 };
+            DrawHealth(wolf.Health, healthBarPosition);
+
+            if (showHitboxes)
             {
-                projectile.Draw();
-                // Draw projectile hitbox if enabled
-                if (showHitboxes)
-                {
-                    projectile.DrawHitbox();
-                }
+                wolf.DrawHitbox(Color.Purple, wolfBitmap.Width, wolfBitmap.Height);
+                DrawChaseRange(wolf);
             }
-
-            // Draw dropped items
-            DrawDroppedItems(Goblin.DroppedItems);
         }
 
-        private static void DrawCharacterWithFlash(Character character, Bitmap bitmap, Vector2D position)
+        foreach (Projectile projectile in player.Projectiles)
         {
-            if (IsColorRed(character.CurrentColor))
+            projectile.Draw();
+            if (showHitboxes)
             {
-                SplashKit.FillRectangle(Color.RGBAColor(255, 0, 0, 128), position.X, position.Y, bitmap.Width, bitmap.Height);
+                projectile.DrawHitbox();
             }
-            SplashKit.DrawBitmap(bitmap, (float)position.X, (float)position.Y);
         }
 
-        public static void DrawDroppedItems(List<Item> items)
+        DrawDroppedItems(Goblin.DroppedItems);
+    }
+
+    private static void DrawFloor(Bitmap floorBitmap)
+    {
+        int screenWidth = SplashKit.ScreenWidth();
+        int screenHeight = SplashKit.ScreenHeight();
+        int tileWidth = floorBitmap.Width;
+        int tileHeight = floorBitmap.Height;
+
+        for (int x = 0; x < screenWidth; x += tileWidth)
         {
-            foreach (Item item in items)
+            for (int y = 0; y < screenHeight; y += tileHeight)
             {
-                // Draw the item at its actual position
-                SplashKit.DrawBitmap(item.Image, (float)item.Position.X, (float)item.Position.Y);
+                SplashKit.DrawBitmap(floorBitmap, x, y);
             }
         }
+    }
 
-        private static bool IsColorRed(Color color)
+    private static void DrawCharacterWithFlash(Character character, Bitmap bitmap, Vector2D position)
+    {
+        if (IsColorRed(character.CurrentColor))
         {
-            return color.R == 255 && color.G == 0 && color.B == 0;
+            SplashKit.FillRectangle(Color.RGBAColor(255, 0, 0, 128), position.X, position.Y, bitmap.Width, bitmap.Height);
         }
 
-        private static Vector2D GetSpritePosition(Vector2D hitboxLocation, int spriteWidth, int spriteHeight)
-        {
-            double x = hitboxLocation.X - (spriteWidth / 2);
-            double y = hitboxLocation.Y - (spriteHeight / 2);
-            return new Vector2D() { X = x, Y = y };
-        }
+        SplashKit.DrawBitmap(bitmap, (float)position.X, (float)position.Y);
+    }
 
-        private static void DrawHealth(int health, Vector2D position)
-        {
-            for (int i = 0; i < health; i++)
-            {
-                SplashKit.FillRectangle(Color.Red, position.X + i * 20, position.Y, 15, 15);
-            }
-        }
+    private static bool IsColorRed(Color color)
+    {
+        return color.R == 255 && color.G == 0 && color.B == 0;
+    }
 
-        private static void DrawAmmunition(int ammunition, Vector2D position)
-        {
-            SplashKit.DrawText($"Ammunition: {ammunition}", Color.Black, position.X, position.Y);
-        }
+    private static Vector2D GetSpritePosition(Vector2D hitboxLocation, int spriteWidth, int spriteHeight)
+    {
+        double x = hitboxLocation.X - (spriteWidth / 2);
+        double y = hitboxLocation.Y - (spriteHeight / 2);
+        return new Vector2D() { X = x, Y = y };
+    }
 
-        private static void DrawChaseRange(Goblin goblin)
+    private static void DrawHealth(int health, Vector2D position)
+    {
+        for (int i = 0; i < health; i++)
         {
-            const double chaseThreshold = 250.0;
-            SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)goblin.GetLocation().X, (float)goblin.GetLocation().Y, (float)chaseThreshold);
+            SplashKit.FillRectangle(Color.Red, position.X + i * 20, position.Y, 15, 15);
+        }
+    }
+
+    private static void DrawAmmunition(int ammunition, Vector2D position)
+    {
+        DrawTextWithOutline($"Ammunition: {ammunition}", Color.Black, Color.White, position);
+    }
+
+    private static void DrawPlayerStats(Player player, Vector2D position)
+    {
+        DrawTextWithOutline($"Health: {player.Health}", Color.Black, Color.White, position);
+        DrawTextWithOutline($"Damage: {player.Damage}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 20 });
+        DrawTextWithOutline($"Speed: {player.Speed}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 40 });
+        DrawTextWithOutline($"Ammo: {player.Ammunition}", Color.Black, Color.White, new Vector2D() { X = position.X, Y = position.Y + 60 });
+    }
+
+    private static void DrawTextWithOutline(string text, Color textColor, Color outlineColor, Vector2D position)
+    {
+        const int outlineThickness = 2;
+
+        // Draw outline
+        SplashKit.DrawText(text, outlineColor, (float)position.X - outlineThickness, (float)position.Y);
+        SplashKit.DrawText(text, outlineColor, (float)position.X + outlineThickness, (float)position.Y);
+        SplashKit.DrawText(text, outlineColor, (float)position.X, (float)position.Y - outlineThickness);
+        SplashKit.DrawText(text, outlineColor, (float)position.X, (float)position.Y + outlineThickness);
+        SplashKit.DrawText(text, outlineColor, (float)position.X - outlineThickness, (float)position.Y - outlineThickness);
+        SplashKit.DrawText(text, outlineColor, (float)position.X + outlineThickness, (float)position.Y + outlineThickness);
+        SplashKit.DrawText(text, outlineColor, (float)position.X - outlineThickness, (float)position.Y + outlineThickness);
+        SplashKit.DrawText(text, outlineColor, (float)position.X + outlineThickness, (float)position.Y - outlineThickness);
+
+        // Draw text
+        SplashKit.DrawText(text, textColor, (float)position.X, (float)position.Y);
+    }
+
+    private static void DrawChaseRange(Goblin goblin)
+    {
+        const double chaseThreshold = 250.0;
+        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)goblin.GetLocation().X, (float)goblin.GetLocation().Y, (float)chaseThreshold);
+    }
+
+    private static void DrawChaseRange(Wolf wolf)
+    {
+        const double chaseThreshold = 250.0;
+        SplashKit.DrawCircle(Color.RGBAColor(255, 0, 0, 128), (float)wolf.GetLocation().X, (float)wolf.GetLocation().Y, (float)chaseThreshold);
+    }
+
+    public static void DrawDroppedItems(List<Item> items)
+    {
+        foreach (Item item in items)
+        {
+            SplashKit.DrawBitmap(item.Image, (float)item.Position.X, (float)item.Position.Y);
         }
     }
 }
